@@ -22,7 +22,6 @@ class Character {
         character.lifePoints -= weapon.damages
         character.lifePoints += weapon.treat
     }
-    
 }
 
 // Create class fighter who inherits class character
@@ -33,8 +32,6 @@ class Fighter: Character {
         let sword = Sword()
         super.init(name: name, description: "Combattant", lifePoints: 100, weapon: sword)
     }
-   
-    
 }
 
 
@@ -62,8 +59,8 @@ class Colossus: Character {
 class Dwarf: Character {
 
     init(name: String) {
-        let sword = Sword()
-        super.init(name: name, description: "Nain", lifePoints: 70, weapon: sword)
+        let axe = Axe()
+        super.init(name: name, description: "Nain", lifePoints: 70, weapon: axe)
     }
 }
 
@@ -77,7 +74,6 @@ class Weapon {
         self.damages = damage
         self.treat = treat
     }
-    
 }
 
 // Create class Sword who inherits class Weapon
@@ -88,9 +84,6 @@ class Sword: Weapon {
         super.init(damage: 10, treat: 0)
         
     }
-    
-
-    
 }
 
 // Create class MageBaton who inherits class Weapon
@@ -100,7 +93,6 @@ class MageBaton: Weapon {
     init() {
         super.init(damage: 0, treat: 10)
     }
-    
 }
 
 // Create class Fists who inherits class Weapon
@@ -110,7 +102,6 @@ class Fists: Weapon {
     init() {
         super.init(damage: 5, treat: 0)
     }
-    
 }
 
 // Create class Axe who inherits class Weapon
@@ -121,6 +112,27 @@ class Axe: Weapon {
         super.init(damage: 20, treat: 0)
     }
 }
+
+// Create class Team
+
+class Team {
+    var player: String
+    var character1: Character
+    var character2: Character
+    var character3: Character
+        
+    init(player: String, _ character1: Character, _ character2: Character, _ character3: Character) {
+        self.player = player
+        self.character1 = character1
+        self.character2 = character2
+        self.character3 = character3
+    }
+}
+
+
+
+
+
 
 
 
