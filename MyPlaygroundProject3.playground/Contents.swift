@@ -1,6 +1,6 @@
-//: Playground - noun: a place where people can play
 
-import UIKit
+
+import Foundation
 
 // Create class character
 
@@ -18,9 +18,8 @@ class Character {
         self.weapon = weapon
      }
     
-    func action(character: Character) {
-        character.lifePoints -= weapon.damages
-        character.lifePoints += weapon.treat
+    func actOn(character: Character) {
+        character.lifePoints += weapon.points
     }
 }
 
@@ -67,12 +66,11 @@ class Dwarf: Character {
 // Create class weapon
 
 class Weapon {
-    var damages = 0
-    var treat = 0
+    var points = 0
     
-    init(damage: Int, treat: Int) {
-        self.damages = damage
-        self.treat = treat
+    init(points: Int) {
+        self.points = points
+        
     }
 }
 
@@ -81,7 +79,7 @@ class Weapon {
 class Sword: Weapon {
     
     init() {
-        super.init(damage: 10, treat: 0)
+        super.init(points: -10)
         
     }
 }
@@ -91,7 +89,7 @@ class Sword: Weapon {
 class MageBaton: Weapon {
     
     init() {
-        super.init(damage: 0, treat: 10)
+        super.init(points: 10)
     }
 }
 
@@ -100,7 +98,7 @@ class MageBaton: Weapon {
 class Fists: Weapon {
     
     init() {
-        super.init(damage: 5, treat: 0)
+        super.init(points: -5)
     }
 }
 
@@ -109,7 +107,7 @@ class Fists: Weapon {
 class Axe: Weapon {
     
     init() {
-        super.init(damage: 20, treat: 0)
+        super.init(points: -20)
     }
 }
 
@@ -117,17 +115,48 @@ class Axe: Weapon {
 
 class Team {
     var player: String
-    var character1: Character
-    var character2: Character
-    var character3: Character
-        
-    init(player: String, _ character1: Character, _ character2: Character, _ character3: Character) {
+    var characters = [Character]()
+    
+    init(player: String) {
         self.player = player
-        self.character1 = character1
-        self.character2 = character2
-        self.character3 = character3
+        
     }
 }
+
+// Create class Game
+
+class Game {
+    
+    
+}
+
+
+let rouge = Team(player: "Leon")
+rouge.characters.append(Dwarf(name: "Naim"))
+
+let bleu = Team(player: "Mathilda")
+bleu.characters.append(Magus(name: "Gandalf"))
+
+rouge.characters[0].actOn(character: bleu.characters[0])
+
+print(rouge.characters[0].lifePoints)
+print(bleu.characters[0].lifePoints)
+
+bleu.characters[0].actOn(character: rouge.characters[0])
+
+print(rouge.characters[0].lifePoints)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
