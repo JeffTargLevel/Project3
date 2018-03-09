@@ -53,6 +53,7 @@ class Colossus: Character {
         super.init(name: name, description: "Colosse", lifePoints: 150, weapon: fists)
     }
 }
+
 // Create class dwarf who inherits class character
 
 class Dwarf: Character {
@@ -116,10 +117,9 @@ class Axe: Weapon {
 class Team {
     var player: String
     var characters = [Character]()
-    
+        
     init(player: String) {
         self.player = player
-        
     }
 }
 
@@ -127,24 +127,67 @@ class Team {
 
 class Game {
     
+    // Step 1
+    
+    func add(team: Team) {
+        print("L'équipe \(team.player) entre jeu !")
+    }
+    
+    // Step 2
+    
+    func choice(_ character: Character) {
+        print("C'est \(character.name) qui va combattre")
+        
+    }
+    
+    // Step 3
+    
+    func toAim(_ character: Character, weapon: Weapon) {
+    
+        character.lifePoints += weapon.points
+        print("\(character.name)")
+    }
     
 }
 
 
-let rouge = Team(player: "Leon")
-rouge.characters.append(Dwarf(name: "Naim"))
+let leon = Team(player: "Leon")
+leon.characters.append(Dwarf(name: "Gimli"))
+leon.characters.append(Fighter(name: "Link"))
+leon.characters.append(Magus(name: "Merlin"))
 
-let bleu = Team(player: "Mathilda")
-bleu.characters.append(Magus(name: "Gandalf"))
 
-rouge.characters[0].actOn(character: bleu.characters[0])
 
-print(rouge.characters[0].lifePoints)
-print(bleu.characters[0].lifePoints)
+let mathilda = Team(player: "Mathilda")
+mathilda.characters.append(Magus(name: "Gandalf"))
+mathilda.characters.append(Colossus(name: "Shadow"))
+mathilda.characters.append(Fighter(name: "Geralt"))
 
-bleu.characters[0].actOn(character: rouge.characters[0])
 
-print(rouge.characters[0].lifePoints)
+
+Game().add(team: leon)
+Game().add(team: mathilda)
+
+Game().choice(leon.characters[0])
+
+Game().toAim(mathilda.characters[0], weapon: Axe())
+
+mathilda.characters[0].lifePoints
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
