@@ -123,32 +123,60 @@ class Team {
     }
 }
 
-// Create class Game
 
-class Game {
+
+
+
+
+//Create class Play
+
+class Play {
     
-    // Step 1
+    // Step 1 : choice of the player's team
     
-    func add(team: Team) {
-        print("L'équipe \(team.player) entre jeu !")
+    func myTeam(_ team: Team) {
+        print("L'équipe \(team.player) entre en jeu !")
     }
     
-    // Step 2
+    // Step 2 : action of player's character against opposing character
     
-    func choice(_ character: Character) {
-        print("C'est \(character.name) qui va combattre")
+    func myCharacter(_ character: Character, act opposingCharacter: Character) {
+        opposingCharacter.lifePoints += character.weapon.points
         
+        if character.weapon.points < 0 {
+        print("\(character.name) combat contre \(opposingCharacter.name) !")
+        
+        print("\(opposingCharacter.name) perd \(character.weapon.points) points de vie et il lui en reste \(opposingCharacter.lifePoints) !")
+            
+        } else {
+            print("\(character.name) soigne \(opposingCharacter.name) et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
+        }
+        
+        if opposingCharacter.lifePoints <= 0 {
+            print("\(opposingCharacter.name) est mort !")
+            
+            
+        }
     }
-    
-    // Step 3
-    
-    func toAim(_ character: Character, weapon: Weapon) {
-    
-        character.lifePoints += weapon.points
-        print("\(character.name)")
-    }
-    
+
 }
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 let leon = Team(player: "Leon")
@@ -164,15 +192,15 @@ mathilda.characters.append(Colossus(name: "Shadow"))
 mathilda.characters.append(Fighter(name: "Geralt"))
 
 
+Play().myTeam(leon)
 
-Game().add(team: leon)
-Game().add(team: mathilda)
+Play().myCharacter(leon.characters[0], act: mathilda.characters[0])
 
-Game().choice(leon.characters[0])
 
-Game().toAim(mathilda.characters[0], weapon: Axe())
 
-mathilda.characters[0].lifePoints
+Play().myCharacter(leon.characters[0], act: mathilda.characters[0])
+
+Play().myCharacter(leon.characters[0], act: mathilda.characters[0])
 
 
 
