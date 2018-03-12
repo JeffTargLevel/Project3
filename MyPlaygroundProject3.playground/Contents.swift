@@ -117,16 +117,19 @@ class Axe: Weapon {
 class Team {
     var player: String
     var characters = [Character]()
-        
+    
     init(player: String) {
         self.player = player
+        
+// Characters limit
+        
+        if characters.count > 3 {
+            print("Nombre limite de personnages dépassé !")
+        } else {
+            print("Encore un personnage a créer")
+        }
     }
 }
-
-
-
-
-
 
 //Create class Play
 
@@ -183,7 +186,7 @@ let leon = Team(player: "Leon")
 leon.characters.append(Dwarf(name: "Gimli"))
 leon.characters.append(Fighter(name: "Link"))
 leon.characters.append(Magus(name: "Merlin"))
-
+leon.characters.append(Colossus(name: "Big"))
 
 
 let mathilda = Team(player: "Mathilda")
