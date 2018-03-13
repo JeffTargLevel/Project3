@@ -120,30 +120,44 @@ class Team {
     
     init(player: String) {
         self.player = player
-        
-// Characters limit
-        
-        if characters.count > 3 {
-            print("Nombre limite de personnages dépassé !")
-        } else {
-            print("Encore un personnage a créer")
         }
-    }
 }
 
 //Create class Play
 
 class Play {
     
-    // Step 1 : choice of the player's team
+// Step 1 : choice of the player's team and opposing team
     
-    func myTeam(_ team: Team) {
-        print("L'équipe \(team.player) entre en jeu !")
+    func myTeam(_ team: Team, against opposingTeam: Team) {
+        
+// Display characters limit
+        
+        if team.characters.count > 3 {
+        print("Nombre limite de personnages dépassé pour l'équipe \(team.player) !")
+            
+        } else if team.characters.count < 3 {
+        print("Encore un personnage à créer")
+        }
+        
+        if opposingTeam.characters.count > 3 {
+        print("Nombre limite de personnages dépassé par l'équipe \(opposingTeam.player)")
+            
+        } else if opposingTeam.characters.count < 3 {
+        print("Encore un personnage à créer")
+        }
+        
+        print("L'équipe \(team.player) va combattre contre l'équipe \(opposingTeam.player) !")
+        
+// Display status of opposing characters
+        
+        for status in opposingTeam.characters {  
+        print("Status de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
     }
-    
+}
     // Step 2 : action of player's character against opposing character
     
-    func myCharacter(_ character: Character, act opposingCharacter: Character) {
+    func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
         opposingCharacter.lifePoints += character.weapon.points
         
         if character.weapon.points < 0 {
@@ -158,10 +172,8 @@ class Play {
         if opposingCharacter.lifePoints <= 0 {
             print("\(opposingCharacter.name) est mort !")
             
-            
         }
     }
-
 }
     
     
@@ -186,7 +198,6 @@ let leon = Team(player: "Leon")
 leon.characters.append(Dwarf(name: "Gimli"))
 leon.characters.append(Fighter(name: "Link"))
 leon.characters.append(Magus(name: "Merlin"))
-leon.characters.append(Colossus(name: "Big"))
 
 
 let mathilda = Team(player: "Mathilda")
@@ -194,16 +205,15 @@ mathilda.characters.append(Magus(name: "Gandalf"))
 mathilda.characters.append(Colossus(name: "Shadow"))
 mathilda.characters.append(Fighter(name: "Geralt"))
 
+Play().myTeam(leon, against: mathilda)
 
-Play().myTeam(leon)
-
-Play().myCharacter(leon.characters[0], act: mathilda.characters[0])
-
+Play().myCharacter(leon.characters[0], actOn: mathilda.characters[0])
 
 
-Play().myCharacter(leon.characters[0], act: mathilda.characters[0])
 
-Play().myCharacter(leon.characters[0], act: mathilda.characters[0])
+Play().myCharacter(leon.characters[0], actOn: mathilda.characters[0])
+
+Play().myCharacter(leon.characters[0], actOn: mathilda.characters[0])
 
 
 
