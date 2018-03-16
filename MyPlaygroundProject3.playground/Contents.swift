@@ -120,7 +120,7 @@ class Team {
     
     init(player: String) {
         self.player = player
-        }
+    }
 }
 
 //Create class Play
@@ -129,7 +129,7 @@ class Play {
     
 // Step 1 : choice of the player's team and opposing team
     
-    func myTeam(_ team: Team, against opposingTeam: Team) {
+   static func myTeam(_ team: Team, against opposingTeam: Team) {
         
 // Display characters limit
         
@@ -147,7 +147,7 @@ class Play {
         print("Encore un personnage à créer")
         }
         
-        print("L'équipe \(team.player) va combattre contre l'équipe \(opposingTeam.player) !")
+        print("L'équipe \(team.player) combat contre l'équipe \(opposingTeam.player) !")
         
 // Display status of opposing characters
         
@@ -155,9 +155,15 @@ class Play {
         print("Status de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
     }
 }
-    // Step 2 : action of player's character against opposing character
+        
+// Step 2 : action of player's character against opposing character
     
-    func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
+    static func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
+        
+// Random weapon
+        
+        //let randomWeapon = arc4random_uniform(UInt32(character.weapon))
+        
         opposingCharacter.lifePoints += character.weapon.points
         
         if character.weapon.points < 0 {
@@ -166,17 +172,18 @@ class Play {
         print("\(opposingCharacter.name) perd \(character.weapon.points) points de vie et il lui en reste \(opposingCharacter.lifePoints) !")
             
         } else {
-            print("\(character.name) soigne \(opposingCharacter.name) et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
+        print("\(character.name) soigne \(opposingCharacter.name) et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
         }
         
         if opposingCharacter.lifePoints <= 0 {
-            print("\(opposingCharacter.name) est mort !")
+        print("\(opposingCharacter.name) est mort !")
+            
             
         }
     }
 }
     
-    
+
     
 
 
@@ -205,15 +212,13 @@ mathilda.characters.append(Magus(name: "Gandalf"))
 mathilda.characters.append(Colossus(name: "Shadow"))
 mathilda.characters.append(Fighter(name: "Geralt"))
 
-Play().myTeam(leon, against: mathilda)
+Play.myTeam(leon, against: mathilda)
 
-Play().myCharacter(leon.characters[0], actOn: mathilda.characters[0])
+Play.myCharacter(leon.characters[0], actOn: mathilda.characters[0])
 
+Play.myTeam(mathilda, against: leon)
 
-
-Play().myCharacter(leon.characters[0], actOn: mathilda.characters[0])
-
-Play().myCharacter(leon.characters[0], actOn: mathilda.characters[0])
+Play.myCharacter(mathilda.characters[1], actOn: leon.characters[1])
 
 
 
