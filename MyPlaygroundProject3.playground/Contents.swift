@@ -10,6 +10,9 @@ class Character {
     var description: String
     var lifePoints: Int
     var weapon: Weapon
+    var isDead: Bool {
+        return lifePoints <= 0
+    }
     
     init(name: String, description: String, lifePoints: Int, weapon: Weapon) {
         self.name = name
@@ -118,6 +121,7 @@ class Team {
     var player: String
     var characters = [Character]()
     
+    
     init(player: String) {
         self.player = player
     }
@@ -125,11 +129,12 @@ class Team {
 
 //Create class Play
 
-class Play {
+class Game {
+    var teams = [Team]()
     
-// Step 1 : choice of the player's team and opposing team
+    // Step 1 : choice of the player's team and opposing team
     
-   static func myTeam(_ team: Team, against opposingTeam: Team) {
+   func myTeam(_ team: Team, against opposingTeam: Team) {
         
 // Display characters limit
         
@@ -158,12 +163,7 @@ class Play {
         
 // Step 2 : action of player's character against opposing character
     
-    static func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
-        
-// Random weapon
-        
-        //let randomWeapon = arc4random_uniform(UInt32(character.weapon))
-        
+    func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
         opposingCharacter.lifePoints += character.weapon.points
         
         if character.weapon.points < 0 {
@@ -175,7 +175,7 @@ class Play {
         print("\(character.name) soigne \(opposingCharacter.name) et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
         }
         
-        if opposingCharacter.lifePoints <= 0 {
+        if opposingCharacter.isDead {
         print("\(opposingCharacter.name) est mort !")
             
             
@@ -185,6 +185,7 @@ class Play {
     
 
     
+
 
 
 
@@ -212,20 +213,15 @@ mathilda.characters.append(Magus(name: "Gandalf"))
 mathilda.characters.append(Colossus(name: "Shadow"))
 mathilda.characters.append(Fighter(name: "Geralt"))
 
-Play.myTeam(leon, against: mathilda)
 
-Play.myCharacter(leon.characters[0], actOn: mathilda.characters[0])
+let game = Game()
 
-Play.myTeam(mathilda, against: leon)
+game.teams.append(leon)
+game.teams.append(mathilda)
 
-Play.myCharacter(mathilda.characters[1], actOn: leon.characters[1])
+game.myTeam(game.teams[0], against: game.teams[1])
 
-
-
-
-
-
-
+game.myCharacter(game.teams[0].characters[0], actOn: game.teams[1].characters[0])
 
 
 
