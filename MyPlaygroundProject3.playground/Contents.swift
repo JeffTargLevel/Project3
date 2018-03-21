@@ -143,7 +143,7 @@ class Game {
     
     // Step 1 : choice of the player's team and opposing team
     
-   func myTeam(_ team: Team, against opposingTeam: Team) {
+   func myTeam(_ team: Team) {
         
 // Display characters limit
         
@@ -153,23 +153,18 @@ class Game {
         } else if team.characters.count < 3 {
         print("Encore un personnage à créer")
         }
-        
-        if opposingTeam.characters.count > 3 {
-        print("Nombre limite de personnages dépassé par l'équipe \(opposingTeam.player)")
-            
-        } else if opposingTeam.characters.count < 3 {
-        print("Encore un personnage à créer")
-        }
-        
-        print("L'équipe \(team.player) combat contre l'équipe \(opposingTeam.player) !")
-        
-// Display status of opposing characters
-        
-        for status in opposingTeam.characters {  
-        print("Status de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
     }
-}
-        
+    
+// Display status of opposing characters
+    
+    func statusOf(opposing team: Team) {
+    
+        for status in team.characters {
+        print("Status du personnage \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
+        }
+    }
+
+    
 // Step 2 : action of player's character against opposing character
     
     func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
@@ -188,9 +183,9 @@ class Game {
         print("\(opposingCharacter.name) est mort !")
             
             
+            }
         }
     }
-}
 
 
 
@@ -230,8 +225,12 @@ class Display {
         if let choice = readLine() {
             switch choice {
             case "1": // Equipe Leon
+                game.myTeam(game.teams[0])
+                game.statusOf(opposing: game.teams[1])
                 choiceCharactersLeon()
             case "2": // Equipe Mathilda
+                game.myTeam(game.teams[1])
+                game.statusOf(opposing: game.teams[0])
                 choiceCharactersMathilda()
             default:
                 print("Equipe non valide")
