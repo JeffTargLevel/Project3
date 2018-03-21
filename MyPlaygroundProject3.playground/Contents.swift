@@ -160,7 +160,7 @@ class Game {
     func statusOf(opposing team: Team) {
     
         for status in team.characters {
-        print("Status du personnage \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
+        print("Status de l'adeversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
         }
     }
 
@@ -260,9 +260,9 @@ class Display {
     
     func choiceCharacterDwarfLeon() {
         print("Selectionne le personnage que tu veux combattre"
-            + "\n1. \(mathilda.characters[0].name) qui est un \(mathilda.characters[0].description)"
-            + "\n2. \(mathilda.characters[1].name) qui est un \(mathilda.characters[1].description)"
-            + "\n3. \(mathilda.characters[2].name) qui est un \(mathilda.characters[2].description)")
+            + "\n1. \(mathilda.characters[0].name)"
+            + "\n2. \(mathilda.characters[1].name)"
+            + "\n3. \(mathilda.characters[2].name)")
         
         // Player's response
         
@@ -285,9 +285,9 @@ class Display {
     
     func choiceCharacterFighterLeon() {
         print("Selectionne le personnage que tu veux combattre"
-            + "\n1. \(mathilda.characters[0].name) qui est un \(mathilda.characters[0].description)"
-            + "\n2. \(mathilda.characters[1].name) qui est un \(mathilda.characters[1].description)"
-            + "\n3. \(mathilda.characters[2].name) qui est un \(mathilda.characters[2].description)")
+            + "\n1. \(mathilda.characters[0].name)"
+            + "\n2. \(mathilda.characters[1].name)"
+            + "\n3. \(mathilda.characters[2].name)")
         
         // Player's response
         
@@ -310,8 +310,8 @@ class Display {
     
     func choiceCharacterMagusLeon() {
         print("Selectionne le personnage que tu veux soigner"
-            + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
-            + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)")
+            + "\n1. \(leon.characters[0].name) qui a \(leon.characters[0].lifePoints) de points de vie"
+            + "\n2. \(leon.characters[1].name) qui a \(leon.characters[1].lifePoints) de points de vie")
         
         
         // Player's response
@@ -352,8 +352,8 @@ class Display {
     
     func choiceCharacterMagusMathilda() {
         print("Selectionne le personnage que tu veux soigner"
-            + "\n1. \(mathilda.characters[1].name) qui est un \(mathilda.characters[1].description)"
-            + "\n2. \(mathilda.characters[2].name) qui est un \(mathilda.characters[2].description)")
+            + "\n1. \(mathilda.characters[1].name) qui a \(mathilda.characters[1].lifePoints) points de vie"
+            + "\n2. \(mathilda.characters[2].name) qui a \(mathilda.characters[2].lifePoints) points de vie")
         
         // Player's response
         
@@ -373,9 +373,9 @@ class Display {
     
     func choiceCharacterColossusMathilda() {
         print("Selectionne le personnage que tu veux combattre"
-            + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
-            + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)"
-            + "\n3. \(leon.characters[2].name) qui est un \(leon.characters[2].description)")
+            + "\n1. \(leon.characters[0].name)"
+            + "\n2. \(leon.characters[1].name)"
+            + "\n3. \(leon.characters[2].name)")
         
         // Player's response
         
@@ -398,9 +398,9 @@ class Display {
     
     func choiceCharacterFighterMathilda() {
         print("Selectionne le personnage que tu veux combattre"
-            + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
-            + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)"
-            + "\n3. \(leon.characters[2].name) qui est un \(leon.characters[2].description)")
+            + "\n1. \(leon.characters[0].name)"
+            + "\n2. \(leon.characters[1].name)"
+            + "\n3. \(leon.characters[2].name)")
         
         // Player's response
         
