@@ -2,6 +2,11 @@
 
 import Foundation
 
+
+//=========================
+// MARK/ - Parameters
+//=========================
+
 // Create class character
 
 
@@ -127,7 +132,11 @@ class Team {
     }
 }
 
-//Create class Play
+//======================
+//MARK: - Activities
+//======================
+
+//Create class Game
 
 class Game {
     var teams = [Team]()
@@ -182,22 +191,6 @@ class Game {
         }
     }
 }
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -219,9 +212,305 @@ let game = Game()
 game.teams.append(leon)
 game.teams.append(mathilda)
 
-game.myTeam(game.teams[0], against: game.teams[1])
 
-game.myCharacter(game.teams[0].characters[0], actOn: game.teams[1].characters[0])
+
+
+
+//========================
+//MARK: - Conversation
+//========================
+
+class Display {
+
+    func choiceTeam() {
+        print("Sélectionne ton équipe"
+        + "\n1. \(leon.player)"
+        + "\n2. \(mathilda.player)")
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Equipe Leon
+                choiceCharactersLeon()
+            case "2": // Equipe Mathilda
+                choiceCharactersMathilda()
+            default:
+                print("Equipe non valide")
+            }
+        }
+    }
+    
+    func choiceCharactersLeon() {
+        print("Sélectionne ton personnage"
+        + "\n1. Nain"
+        + "\n2. Combattant"
+        + "\n3. Mage")
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Nain
+                choiceCharacterDwarfLeon()
+            case "2": // Combattant
+                choiceCharacterFighterLeon()
+            case "3": // Mage
+                choiceCharacterMagusLeon()
+            default:
+                print("Personnage non valide")
+            }
+        }
+    }
+    
+    func choiceCharacterDwarfLeon() {
+        print("Selectionne le personnage"
+            + "\n1. Nain contre Mage"
+            + "\n2. Nain contre Colosse"
+            + "\n3. Nain contre Combattant")
+        
+        // Player's response
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Nain contre mage
+                game.myCharacter(game.teams[0].characters[0], actOn: game.teams[1].characters[0])
+               
+            case "2": // Nain contre colosse
+                game.myCharacter(game.teams[0].characters[0], actOn: game.teams[1].characters[1])
+                
+            case "3": // Nain contre Combattant
+                game.myCharacter(game.teams[0].characters[0], actOn: game.teams[1].characters[2])
+                
+            default:
+                print("Personnage non valide")
+            }
+        }
+    }
+    
+    func choiceCharacterFighterLeon() {
+        print("Selectionne le personnage"
+            + "\n1. Combattant contre Mage"
+            + "\n2. Combattant contre Colosse"
+            + "\n3. Combattant contre Combattant")
+        
+        // Player's response
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Combattant contre mage
+                game.myCharacter(game.teams[0].characters[1], actOn: game.teams[1].characters[0])
+                
+            case "2": // Combattant contre colosse
+                game.myCharacter(game.teams[0].characters[1], actOn: game.teams[1].characters[1])
+                
+            case "3": // Combattant contre Combattant
+                game.myCharacter(game.teams[0].characters[1], actOn: game.teams[1].characters[2])
+                
+            default:
+                print("Personnage non valide")
+            }
+        }
+    }
+    
+    func choiceCharacterMagusLeon() {
+        print("Selectionne le personnage"
+            + "\n1. Mage soigne nain"
+            + "\n2. Mage soigne combattant")
+        
+        
+        // Player's response
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Mage soigne nain
+                game.myCharacter(game.teams[0].characters[2], actOn: game.teams[0].characters[0])
+                
+            case "2": // Mage soigne combattant
+                game.myCharacter(game.teams[0].characters[2], actOn: game.teams[0].characters[1])
+                
+            default:
+                print("Personnage non valide")
+            }
+        }
+    }
+
+    func choiceCharactersMathilda() {
+        print("Sélectionne ton personnage"
+            + "\n1. Mage"
+            + "\n2. Colosse"
+            + "\n3. Combattant")
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Mage
+                choiceCharacterMagusMathilda()
+            case "2": // Colosse
+                choiceCharacterColossusMathilda()
+            case "3": // Combattant
+                choiceCharacterFighterMathilda()
+            default:
+                print("Personnage non valide")
+            }
+        }
+    }
+    
+    func choiceCharacterMagusMathilda() {
+        print("Selectionne le personnage"
+            + "\n1. Mage soigne colosse"
+            + "\n2. Mage soigne combattant")
+        
+        // Player's response
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Mage soigne colosse
+                game.myCharacter(game.teams[1].characters[0], actOn: game.teams[1].characters[1])
+                
+            case "2": // Mage soigne combattant
+                game.myCharacter(game.teams[1].characters[0], actOn: game.teams[1].characters[2])
+                
+            default:
+                print("Personnage non valide")
+            }
+        }
+    }
+    
+    func choiceCharacterColossusMathilda() {
+        print("Selectionne le personnage"
+            + "\n1. Colosse contre nain"
+            + "\n2. Colosse contre combattant"
+            + "\n3. Colosse contre mage")
+        
+        // Player's response
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Colosse contre nain
+                game.myCharacter(game.teams[1].characters[1], actOn: game.teams[0].characters[0])
+                
+            case "2": // Colosse contre combattant
+                game.myCharacter(game.teams[1].characters[1], actOn: game.teams[0].characters[1])
+                
+            case "3": // Colosse contre mage
+                game.myCharacter(game.teams[1].characters[1], actOn: game.teams[0].characters[2])
+                
+            default:
+                print("Personnage non valide")
+            }
+        }
+    }
+    
+    func choiceCharacterFighterMathilda() {
+        print("Selectionne le personnage"
+            + "\n1. Combattant contre nain"
+            + "\n2. Combattant contre combattant"
+            + "\n3. Combattant contre mage")
+        
+        // Player's response
+        
+        if let choice = readLine() {
+            switch choice {
+            case "1": // Combattant contre nain
+                game.myCharacter(game.teams[1].characters[2], actOn: game.teams[0].characters[0])
+                
+            case "2": // Combattant contre combattant
+                game.myCharacter(game.teams[1].characters[2], actOn: game.teams[0].characters[1])
+                
+            case "3": // Combattant contre mage
+                game.myCharacter(game.teams[1].characters[2], actOn: game.teams[0].characters[2])
+                
+            default:
+                print("Personnage non valide")
+            }
+        }
+        
+        /*while true {
+            Display().choiceTeam()
+        }*/
+        
+        
+    }
+
+}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
