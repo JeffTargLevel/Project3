@@ -24,7 +24,7 @@ class Character {
         self.description = description
         self.lifePoints = lifePoints
         self.weapon = weapon
-     }
+    }
     
     func actOn(character: Character) {
         character.lifePoints += weapon.points
@@ -34,7 +34,7 @@ class Character {
 // Create class fighter who inherits class character
 
 class Fighter: Character {
-
+    
     init(name: String) {
         let sword = Sword()
         super.init(name: name, description: "Combattant", lifePoints: 100, weapon: sword)
@@ -65,7 +65,7 @@ class Colossus: Character {
 // Create class dwarf who inherits class character
 
 class Dwarf: Character {
-
+    
     init(name: String) {
         let axe = Axe()
         super.init(name: name, description: "Nain", lifePoints: 70, weapon: axe)
@@ -143,49 +143,49 @@ class Game {
     
     // Step 1 : choice of the player's team and opposing team
     
-   func myTeam(_ team: Team, against opposingTeam: Team) {
+    func myTeam(_ team: Team, against opposingTeam: Team) {
         
-// Display characters limit
+        // Display characters limit
         
         if team.characters.count > 3 {
-        print("Nombre limite de personnages dépassé pour l'équipe \(team.player) !")
+            print("Nombre limite de personnages dépassé pour l'équipe \(team.player) !")
             
         } else if team.characters.count < 3 {
-        print("Encore un personnage à créer")
+            print("Encore un personnage à créer")
         }
         
         if opposingTeam.characters.count > 3 {
-        print("Nombre limite de personnages dépassé par l'équipe \(opposingTeam.player)")
+            print("Nombre limite de personnages dépassé par l'équipe \(opposingTeam.player)")
             
         } else if opposingTeam.characters.count < 3 {
-        print("Encore un personnage à créer")
+            print("Encore un personnage à créer")
         }
         
         print("L'équipe \(team.player) combat contre l'équipe \(opposingTeam.player) !")
         
-// Display status of opposing characters
+        // Display status of opposing characters
         
-        for status in opposingTeam.characters {  
-        print("Status de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
+        for status in opposingTeam.characters {
+            print("Status de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
+        }
     }
-}
-        
-// Step 2 : action of player's character against opposing character
+    
+    // Step 2 : action of player's character against opposing character
     
     func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
         opposingCharacter.lifePoints += character.weapon.points
         
         if character.weapon.points < 0 {
-        print("\(character.name) combat contre \(opposingCharacter.name) !")
-        
-        print("\(opposingCharacter.name) perd \(character.weapon.points) points de vie et il lui en reste \(opposingCharacter.lifePoints) !")
+            print("\(character.name) combat contre \(opposingCharacter.name) !")
+            
+            print("\(opposingCharacter.name) perd \(character.weapon.points) points de vie et il lui en reste \(opposingCharacter.lifePoints) !")
             
         } else {
-        print("\(character.name) soigne \(opposingCharacter.name) et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
+            print("\(character.name) soigne \(opposingCharacter.name) et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
         }
         
         if opposingCharacter.isDead {
-        print("\(opposingCharacter.name) est mort !")
+            print("\(opposingCharacter.name) est mort !")
             
             
         }
@@ -221,11 +221,11 @@ game.teams.append(mathilda)
 //========================
 
 class Display {
-
+    
     func choiceTeam() {
         print("Sélectionne ton équipe"
-        + "\n1. \(leon.player)"
-        + "\n2. \(mathilda.player)")
+            + "\n1. \(leon.player)"
+            + "\n2. \(mathilda.player)")
         
         if let choice = readLine() {
             switch choice {
@@ -241,9 +241,9 @@ class Display {
     
     func choiceCharactersLeon() {
         print("Sélectionne ton personnage"
-        + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
-        + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)"
-        + "\n3. \(leon.characters[2].name) qui est un \(leon.characters[2].description)")
+            + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
+            + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)"
+            + "\n3. \(leon.characters[2].name) qui est un \(leon.characters[2].description)")
         
         if let choice = readLine() {
             switch choice {
@@ -271,7 +271,7 @@ class Display {
             switch choice {
             case "1": // Nain contre mage
                 game.myCharacter(game.teams[0].characters[0], actOn: game.teams[1].characters[0])
-               
+                
             case "2": // Nain contre colosse
                 game.myCharacter(game.teams[0].characters[0], actOn: game.teams[1].characters[1])
                 
@@ -330,7 +330,7 @@ class Display {
             }
         }
     }
-
+    
     func choiceCharactersMathilda() {
         print("Sélectionne ton personnage"
             + "\n1. \(mathilda.characters[0].name) qui est un \(mathilda.characters[0].description)"
@@ -423,53 +423,52 @@ class Display {
     }
 }
 
-    /*while true {
-     Display().choiceTeam()
-     }*/
+while true {
+    Display().choiceTeam()
+    }
     
 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
