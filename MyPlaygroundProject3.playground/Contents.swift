@@ -241,9 +241,9 @@ class Display {
     
     func choiceCharactersLeon() {
         print("Sélectionne ton personnage"
-        + "\n1. Nain"
-        + "\n2. Combattant"
-        + "\n3. Mage")
+        + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
+        + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)"
+        + "\n3. \(leon.characters[2].name) qui est un \(leon.characters[2].description)")
         
         if let choice = readLine() {
             switch choice {
@@ -260,10 +260,10 @@ class Display {
     }
     
     func choiceCharacterDwarfLeon() {
-        print("Selectionne le personnage"
-            + "\n1. Nain contre Mage"
-            + "\n2. Nain contre Colosse"
-            + "\n3. Nain contre Combattant")
+        print("Selectionne le personnage que tu veux combattre"
+            + "\n1. \(mathilda.characters[0].name) qui est un \(mathilda.characters[0].description)"
+            + "\n2. \(mathilda.characters[1].name) qui est un \(mathilda.characters[1].description)"
+            + "\n3. \(mathilda.characters[2].name) qui est un \(mathilda.characters[2].description)")
         
         // Player's response
         
@@ -285,10 +285,10 @@ class Display {
     }
     
     func choiceCharacterFighterLeon() {
-        print("Selectionne le personnage"
-            + "\n1. Combattant contre Mage"
-            + "\n2. Combattant contre Colosse"
-            + "\n3. Combattant contre Combattant")
+        print("Selectionne le personnage que tu veux combattre"
+            + "\n1. \(mathilda.characters[0].name) qui est un \(mathilda.characters[0].description)"
+            + "\n2. \(mathilda.characters[1].name) qui est un \(mathilda.characters[1].description)"
+            + "\n3. \(mathilda.characters[2].name) qui est un \(mathilda.characters[2].description)")
         
         // Player's response
         
@@ -310,9 +310,9 @@ class Display {
     }
     
     func choiceCharacterMagusLeon() {
-        print("Selectionne le personnage"
-            + "\n1. Mage soigne nain"
-            + "\n2. Mage soigne combattant")
+        print("Selectionne le personnage que tu veux soigner"
+            + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
+            + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)")
         
         
         // Player's response
@@ -333,9 +333,9 @@ class Display {
 
     func choiceCharactersMathilda() {
         print("Sélectionne ton personnage"
-            + "\n1. Mage"
-            + "\n2. Colosse"
-            + "\n3. Combattant")
+            + "\n1. \(mathilda.characters[0].name) qui est un \(mathilda.characters[0].description)"
+            + "\n2. \(mathilda.characters[1].name) qui est un \(mathilda.characters[1].description)"
+            + "\n3. \(mathilda.characters[2].name) qui est un \(mathilda.characters[2].description)")
         
         if let choice = readLine() {
             switch choice {
@@ -352,9 +352,9 @@ class Display {
     }
     
     func choiceCharacterMagusMathilda() {
-        print("Selectionne le personnage"
-            + "\n1. Mage soigne colosse"
-            + "\n2. Mage soigne combattant")
+        print("Selectionne le personnage que tu veux soigner"
+            + "\n1. \(mathilda.characters[1].name) qui est un \(mathilda.characters[1].description)"
+            + "\n2. \(mathilda.characters[2].name) qui est un \(mathilda.characters[2].description)")
         
         // Player's response
         
@@ -373,10 +373,10 @@ class Display {
     }
     
     func choiceCharacterColossusMathilda() {
-        print("Selectionne le personnage"
-            + "\n1. Colosse contre nain"
-            + "\n2. Colosse contre combattant"
-            + "\n3. Colosse contre mage")
+        print("Selectionne le personnage que tu veux combattre"
+            + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
+            + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)"
+            + "\n3. \(leon.characters[2].name) qui est un \(leon.characters[2].description)")
         
         // Player's response
         
@@ -398,10 +398,10 @@ class Display {
     }
     
     func choiceCharacterFighterMathilda() {
-        print("Selectionne le personnage"
-            + "\n1. Combattant contre nain"
-            + "\n2. Combattant contre combattant"
-            + "\n3. Combattant contre mage")
+        print("Selectionne le personnage que tu veux combattre"
+            + "\n1. \(leon.characters[0].name) qui est un \(leon.characters[0].description)"
+            + "\n2. \(leon.characters[1].name) qui est un \(leon.characters[1].description)"
+            + "\n3. \(leon.characters[2].name) qui est un \(leon.characters[2].description)")
         
         // Player's response
         
