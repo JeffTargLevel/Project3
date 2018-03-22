@@ -167,13 +167,15 @@ class Game {
     // Step 2 : action of player's character against opposing character with random weapon
     
     func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
+        opposingCharacter.lifePoints += character.weapon.points
         
+        if character.description != "Mage" {
         let weapon = [Sword(), Fists(), Axe()]
         let randomIndexWeapon = Int(arc4random_uniform(UInt32(weapon.count)))
         print(weapon[randomIndexWeapon])
         character.weapon.points = weapon[randomIndexWeapon].points
-        
         opposingCharacter.lifePoints += character.weapon.points
+        }
         
         if character.weapon.points < 0 {
             print("\(character.name) combat contre \(opposingCharacter.name) !")
