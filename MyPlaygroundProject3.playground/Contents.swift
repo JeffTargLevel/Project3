@@ -163,11 +163,16 @@ class Game {
         print("Status de l'adeversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
         }
     }
-
     
-// Step 2 : action of player's character against opposing character
+// Step 2 : action of player's character against opposing character with random weapon
     
     func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
+        
+        let weapon = [Sword(), Fists(), Axe()]
+        let randomIndexWeapon = Int(arc4random_uniform(UInt32(weapon.count)))
+        print(weapon[randomIndexWeapon])
+        character.weapon.points = weapon[randomIndexWeapon].points
+        
         opposingCharacter.lifePoints += character.weapon.points
         
         if character.weapon.points < 0 {
@@ -428,11 +433,8 @@ class Display {
     
 
 
-    
-    
-    
-    
-    
+   game.myCharacter(game.teams[1].characters[0], actOn: game.teams[0].characters[0])
+    game.myCharacter(game.teams[0].characters[0], actOn: game.teams[1].characters[0])
     
     
     
