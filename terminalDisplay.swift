@@ -125,21 +125,22 @@ class Team {
     var name: String
     var characters = [Character]()
     
-    init(name: String) {
+    private init(name: String) {
         self.name = name
     }
     
     static func addTeam() -> Team? {
-        
         print("Entre le nom de ton équipe")
         if let name = readLine() {
-            return Team(name: name)
+            let teamWithCharacters = Team(name: name)
+            teamWithCharacters.createThreeCharacters()
+            return teamWithCharacters
         } else {
             return nil
         }
     }
     
-    func createCharacters() {
+    private func createCharacters() {
         print("Sélectionne ton personnage et son nom"
             + "\n1. Combattant"
             + "\n2. Mage"
@@ -167,13 +168,13 @@ class Team {
         }
     }
     
-    func createThreeCharacters() {
+    private func createThreeCharacters() {
         while characters.count != 3 {
             createCharacters()
         }
     }
     
-    func addFighter() -> Fighter? {
+    private func addFighter() -> Fighter? {
         if let name = readLine() {
             return Fighter(name: name)
         } else {
@@ -181,7 +182,7 @@ class Team {
         }
     }
     
-    func addMagus() -> Magus? {
+    private func addMagus() -> Magus? {
         if let name = readLine() {
             return Magus(name: name)
         } else {
@@ -189,7 +190,7 @@ class Team {
         }
     }
     
-    func addColossus() -> Colossus? {
+    private func addColossus() -> Colossus? {
         if let name = readLine() {
             return Colossus(name: name)
         } else {
@@ -197,7 +198,7 @@ class Team {
         }
     }
     
-    func addDwarf() -> Dwarf? {
+    private func addDwarf() -> Dwarf? {
         if let name = readLine() {
             return Dwarf(name: name)
         } else {
