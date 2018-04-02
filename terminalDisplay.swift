@@ -1,5 +1,4 @@
 
-
 import Foundation
 
 
@@ -24,10 +23,6 @@ class Character {
         self.description = description
         self.lifePoints = lifePoints
         self.weapon = weapon
-    }
-    
-    func actOn(character: Character) {
-        character.lifePoints += weapon.points
     }
 }
 
@@ -216,19 +211,23 @@ class Team {
 
 class Game {
     var teams = [Team]()
+    var rounds = [Round]()
     
-    // Step 1 : choice of the player's team and opposing team
     
-    func myTeam(_ team: Team) {
+    init() {
+        print("Bienvenue au tournoi des guerriers de Namek !")
+        let team1 = Team.addTeam()!
+        let team2 = Team.addTeam()!
+        self.teams = [team1, team2]
         
-        // Display characters limit
+    }
+    
+    func startGame() {
         
-        if team.characters.count > 3 {
-            print("Nombre limite de personnages dépassé pour l'équipe \(team.name) !")
-            
-        } else if team.characters.count < 3 {
-            print("Encore un personnage à créer")
-        }
+        let round1 = rounds[0]
+        
+        round1.startRound()
+        
     }
     
     // Display status of opposing characters
@@ -239,11 +238,127 @@ class Game {
             print("Statut de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
         }
     }
+}
+
+// Create Round class
+
+class Round {
+    let teams = [Team]()
     
-    // Step 2 : action of player's character against opposing character with random weapon
+    func startRound() {
+        print("Sélectionne ton équipe :"
+            + "\n1. \(teams[0].name)"
+            + "\n2. \(teams[1].name)")
+        
+        if let choiceTeam = readLine() {
+            switch choiceTeam {
+            case "1":
+                selectCharacterTeam1()
+            case "2":
+                selectCharacterTeam2()
+            default:
+                print("Equipe non valide !")
+            }
+        }
+    }
     
-    func myCharacter(_ character: Character, actOn opposingCharacter: Character) {
+    private func selectCharacterTeam1() {
+        print("Sélectionne ton personnage :"
+            + "\n1. \(teams[0].characters[0].name)"
+            + "\n2. \(teams[0].characters[1].name)"
+            + "\n3. \(teams[0].characters[2].name)")
+        
+        if let choiceCharacterTeam1 = readLine() {
+            
+            var characterTeam1: Character!
+            switch choiceCharacterTeam1 {
+            case "1":
+                characterTeam1 = teams[0].characters[0]
+            case "2":
+                characterTeam1 = teams[0].characters[1]
+            case "3":
+                characterTeam1 = teams[0].characters[2]
+            default:
+                print("Personnage non valide !")
+            }
+            
+            
+            print("Sélectionne le personnage que tu veux attaquer :"
+                + "\n1. \(teams[1].characters[0].name)"
+                + "\n2. \(teams[1].characters[1].name)"
+                + "\n3. \(teams[1].characters[2].name)")
+            
+            if let choiceCharacterTeam2 = readLine() {
+                var characterTeam2: Character!
+                switch choiceCharacterTeam2 {
+                case "1":
+                    characterTeam2 = teams[1].characters[0]
+                case "2":
+                    characterTeam2 = teams[1].characters[1]
+                case "3":
+                    characterTeam2 = teams[1].characters[2]
+                default:
+                    print("Personnage non valide")
+                }
+                myCharacter(character: characterTeam1, actOn: characterTeam2)
+                
+            }
+        }
+    }
+    
+    private func selectCharacterTeam2() {
+        print("Sélectionne ton personnage :"
+            + "\n1. \(teams[1].characters[0].name)"
+            + "\n2. \(teams[1].characters[1].name)"
+            + "\n3. \(teams[1].characters[2].name)")
+        
+        if let choiceCharacterTeam2 = readLine() {
+            
+            var characterTeam2: Character!
+            switch choiceCharacterTeam2 {
+            case "1":
+                characterTeam2 = teams[1].characters[0]
+            case "2":
+                characterTeam2 = teams[1].characters[1]
+            case "3":
+                characterTeam2 = teams[1].characters[2]
+            default:
+                print("Personnage non valide !")
+            }
+            
+            print("Sélectionne le personnage que tu veux attaquer :"
+                + "\n1. \(teams[0].characters[0].name)"
+                + "\n2. \(teams[0].characters[1].name)"
+                + "\n3. \(teams[0].characters[2].name)")
+            
+            if let choiceCharacterTeam1 = readLine() {
+                var characterTeam1: Character!
+                switch choiceCharacterTeam1 {
+                case "1":
+                    characterTeam1 = teams[0].characters[0]
+                case "2":
+                    characterTeam1 = teams[0].characters[1]
+                case "3":
+                    characterTeam1 = teams[0].characters[2]
+                default:
+                    print("Personnage non valide")
+                }
+                myCharacter(character: characterTeam2, actOn: characterTeam1)
+                
+            }
+        }
+    }
+    
+    func myCharacter(character: Character, actOn opposingCharacter: Character) {
         opposingCharacter.lifePoints += character.weapon.points
+        
+        if character.description == "Mage" {
+            let characterToHeal = opposingCharacter
+            var characterWhoHeal = character
+            characterWhoHeal = characterToHeal
+        }
+        
+        // Random weapon
         
         if character.description != "Mage" {
             let weapon = [Sword(), Fists(), Axe()]
@@ -265,20 +380,13 @@ class Game {
         if opposingCharacter.isDead {
             print("\(opposingCharacter.name) est mort !")
             
-            
         }
     }
 }
 
-
-
-
-
-
 //========================
 //MARK: - Conversation
 //========================
-
 
 
 
