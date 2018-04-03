@@ -1,4 +1,6 @@
 
+
+
 import Foundation
 
 
@@ -136,7 +138,7 @@ class Team {
     }
     
     private func createCharacters() {
-        print("Sélectionne ton personnage et son nom"
+        print("Sélectionne ton personnage :"
             + "\n1. Combattant"
             + "\n2. Mage"
             + "\n3. Colosse"
@@ -170,6 +172,7 @@ class Team {
     }
     
     private func addFighter() -> Fighter? {
+        print("Entre son nom :")
         if let name = readLine() {
             return Fighter(name: name)
         } else {
@@ -178,6 +181,7 @@ class Team {
     }
     
     private func addMagus() -> Magus? {
+        print("Entre son nom :")
         if let name = readLine() {
             return Magus(name: name)
         } else {
@@ -186,6 +190,7 @@ class Team {
     }
     
     private func addColossus() -> Colossus? {
+        print("Entre son nom :")
         if let name = readLine() {
             return Colossus(name: name)
         } else {
@@ -194,6 +199,7 @@ class Team {
     }
     
     private func addDwarf() -> Dwarf? {
+        print("Entre son nom :")
         if let name = readLine() {
             return Dwarf(name: name)
         } else {
@@ -213,7 +219,6 @@ class Game {
     var teams = [Team]()
     var rounds = [Round]()
     
-    
     init() {
         print("Bienvenue au tournoi des guerriers de Namek !")
         let team1 = Team.addTeam()!
@@ -225,18 +230,11 @@ class Game {
     func startGame() {
         
         let round1 = rounds[0]
-        
         round1.startRound()
         
-    }
-    
-    // Display status of opposing characters
-    
-    func statusOf(opposing team: Team) {
         
-        for status in team.characters {
-            print("Statut de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie. ")
-        }
+        
+        
     }
 }
 
@@ -263,6 +261,10 @@ class Round {
     }
     
     private func selectCharacterTeam1() {
+        for status in teams[0].characters {
+            print("Statut de l'équipe \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
+            
+        }
         print("Sélectionne ton personnage :"
             + "\n1. \(teams[0].characters[0].name)"
             + "\n2. \(teams[0].characters[1].name)"
@@ -282,6 +284,10 @@ class Round {
                 print("Personnage non valide !")
             }
             
+            for status in teams[1].characters {
+                print("Statut de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
+                
+            }
             
             print("Sélectionne le personnage que tu veux attaquer :"
                 + "\n1. \(teams[1].characters[0].name)"
@@ -302,11 +308,18 @@ class Round {
                 }
                 myCharacter(character: characterTeam1, actOn: characterTeam2)
                 
+            } else if characterTeam1.description == "Mage" {
+                myCharacter(character: characterTeam1, actOn: characterTeam1)
             }
         }
     }
     
     private func selectCharacterTeam2() {
+        for status in teams[1].characters {
+            print("Statut de l'équipe \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
+            
+        }
+        
         print("Sélectionne ton personnage :"
             + "\n1. \(teams[1].characters[0].name)"
             + "\n2. \(teams[1].characters[1].name)"
@@ -324,6 +337,11 @@ class Round {
                 characterTeam2 = teams[1].characters[2]
             default:
                 print("Personnage non valide !")
+            }
+            
+            for status in teams[0].characters {
+                print("Statut de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
+                
             }
             
             print("Sélectionne le personnage que tu veux attaquer :"
@@ -345,18 +363,14 @@ class Round {
                 }
                 myCharacter(character: characterTeam2, actOn: characterTeam1)
                 
+            } else if characterTeam2.description == "Mage" {
+                myCharacter(character: characterTeam2, actOn: characterTeam2)
             }
         }
     }
     
     func myCharacter(character: Character, actOn opposingCharacter: Character) {
         opposingCharacter.lifePoints += character.weapon.points
-        
-        if character.description == "Mage" {
-            let characterToHeal = opposingCharacter
-            var characterWhoHeal = character
-            characterWhoHeal = characterToHeal
-        }
         
         // Random weapon
         
