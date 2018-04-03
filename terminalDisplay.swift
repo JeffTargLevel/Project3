@@ -8,7 +8,7 @@ import Foundation
 // MARK/ - Parameters
 //=========================
 
-// Create class character
+// Create class Character
 
 
 class Character {
@@ -16,6 +16,9 @@ class Character {
     var description: String
     var lifePoints: Int
     var weapon: Weapon
+    var isLife: Bool {
+        return lifePoints >= 0
+    }
     var isDead: Bool {
         return lifePoints <= 0
     }
@@ -28,7 +31,7 @@ class Character {
     }
 }
 
-// Create class fighter who inherits class character
+// Create class Fighter who inherits class Character
 
 class Fighter: Character {
     
@@ -38,7 +41,7 @@ class Fighter: Character {
     }
 }
 
-// Create class magus who inherits class character
+// Create class Magus who inherits class Character
 
 class Magus: Character {
     
@@ -48,7 +51,7 @@ class Magus: Character {
     }
 }
 
-// Create class colossus who inherits class character
+// Create class Colossus who inherits class Character
 
 class Colossus: Character {
     
@@ -58,7 +61,7 @@ class Colossus: Character {
     }
 }
 
-// Create class dwarf who inherits class character
+// Create class Dwarf who inherits class Character
 
 class Dwarf: Character {
     
@@ -68,7 +71,17 @@ class Dwarf: Character {
     }
 }
 
-// Create class weapon
+// Create class Boss who inherits class Character
+
+class Boss: Character {
+    
+    init() {
+        let lucille = Lucille()
+        super.init(name: "Negan", description: "Boss", lifePoints: 120, weapon: lucille)
+    }
+}
+
+// Create class Weapon
 
 class Weapon {
     var points = 0
@@ -113,6 +126,15 @@ class Axe: Weapon {
     
     init() {
         super.init(points: -20)
+    }
+}
+
+// Create class Lucille, weapon of Boss who inherits class Weapon
+
+class Lucille: Weapon {
+    
+    init() {
+        super.init(points: -30)
     }
 }
 
@@ -256,6 +278,11 @@ class Round {
                 selectCharacterTeam2()
             default:
                 print("Equipe non valide !")
+            }
+        }
+        for status in teams[0].characters {
+            while status.isLife {
+                startRound()
             }
         }
     }
