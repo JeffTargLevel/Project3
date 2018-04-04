@@ -279,11 +279,7 @@ class Round {
                 print("Equipe non valide !")
             }
         }
-    for status in teams[0].characters {
-        while status.isLife {
-            startRound()
-        }
-    }
+    
 }
     
     private func selectCharacterTeam1() {
@@ -338,7 +334,12 @@ class Round {
             myCharacter(character: characterTeam1, actOn: characterTeam1)
             }
     }
-}
+        for status in teams[0].characters {
+            while status.isLife {
+                startRound()
+            }
+        }
+    }
     
     private func selectCharacterTeam2() {
         for status in teams[1].characters {
@@ -391,6 +392,12 @@ class Round {
                 
             } else if characterTeam2.description == "Mage" {
                 myCharacter(character: characterTeam2, actOn: characterTeam2)
+            }
+        }
+        
+        for status in teams[1].characters {
+            while status.isLife {
+                startRound()
             }
         }
     }
