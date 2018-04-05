@@ -1,5 +1,6 @@
 
 
+
 import Foundation
 
 
@@ -249,9 +250,14 @@ class Game {
     }
     
     func startGame() {
+        let round = rounds[0]
+        rounds.append(round)
+        round.teams = teams
         
-        let round1 = rounds[0]
-        round1.startRound()
+        while true {
+            round.startRound()
+        }
+        
         
         
         
@@ -262,143 +268,63 @@ class Game {
 // Create Round class
 
 class Round {
-    let teams = [Team]()
+    var teams = [Team]()
     
     func startRound() {
-        print("Sélectionne ton équipe :"
-            + "\n1. \(teams[0].name)"
-            + "\n2. \(teams[1].name)")
-        
-        if let choiceTeam = readLine() {
-            switch choiceTeam {
-            case "1":
-                selectCharacterTeam1()
-            case "2":
-                selectCharacterTeam2()
-            default:
-                print("Equipe non valide !")
-            }
-        }
-        
+        fight(betweenTeam: 0, andTeam: 1)
+        fight(betweenTeam: 1, andTeam: 0)
     }
     
-    private func selectCharacterTeam1() {
-        for status in teams[0].characters {
-            print("Statut de l'équipe \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
-            
-        }
-        print("Sélectionne ton personnage :"
-            + "\n1. \(teams[0].characters[0].name)"
-            + "\n2. \(teams[0].characters[1].name)"
-            + "\n3. \(teams[0].characters[2].name)")
-        
-        if let choiceCharacterTeam1 = readLine() {
-            
-            var characterTeam1: Character!
-            switch choiceCharacterTeam1 {
-            case "1":
-                characterTeam1 = teams[0].characters[0]
-            case "2":
-                characterTeam1 = teams[0].characters[1]
-            case "3":
-                characterTeam1 = teams[0].characters[2]
-            default:
-                print("Personnage non valide !")
-            }
-            
-            for status in teams[1].characters {
-                print("Statut de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
-                
-            }
-            
-            print("Sélectionne le personnage que tu veux attaquer :"
-                + "\n1. \(teams[1].characters[0].name)"
-                + "\n2. \(teams[1].characters[1].name)"
-                + "\n3. \(teams[1].characters[2].name)")
-            
-            if let choiceCharacterTeam2 = readLine() {
-                var characterTeam2: Character!
-                switch choiceCharacterTeam2 {
-                case "1":
-                    characterTeam2 = teams[1].characters[0]
-                case "2":
-                    characterTeam2 = teams[1].characters[1]
-                case "3":
-                    characterTeam2 = teams[1].characters[2]
-                default:
-                    print("Personnage non valide")
-                }
-                myCharacter(character: characterTeam1, actOn: characterTeam2)
-                
-            } else if characterTeam1.description == "Mage" {
-                myCharacter(character: characterTeam1, actOn: characterTeam1)
-            }
-        }
-        for status in teams[0].characters {
-            while status.isLife {
-                startRound()
-            }
-        }
-    }
-    
-    private func selectCharacterTeam2() {
-        for status in teams[1].characters {
+    func fight(betweenTeam index: Int, andTeam opposingIndex: Int) {
+        for status in teams[index].characters {
             print("Statut de l'équipe \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
             
         }
         
-        print("Sélectionne ton personnage :"
-            + "\n1. \(teams[1].characters[0].name)"
-            + "\n2. \(teams[1].characters[1].name)"
-            + "\n3. \(teams[1].characters[2].name)")
+        let character1 = selectCharacter(teamIndex: index, isAttacking: false)
         
-        if let choiceCharacterTeam2 = readLine() {
+        for status in teams[opposingIndex].characters {
+            print("Statut de l'équipe \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
             
-            var characterTeam2: Character!
-            switch choiceCharacterTeam2 {
+        }
+        
+        let character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true)
+        
+        myCharacter(character: character1!, actOn: character2!)
+        
+    }
+    
+    func selectCharacter(teamIndex: Int, isAttacking: Bool) -> Character? {
+        var message = ""
+        
+        if isAttacking {
+            message = "Sélectionne le personnage que tu veux attaquer :"
+            
+        } else {
+            message = "Sélectionne ton personnage :"
+        }
+        
+        print(message
+            + "\n1. \(teams[teamIndex].characters[0].name)"
+            + "\n2. \(teams[teamIndex].characters[1].name)"
+            + "\n3. \(teams[teamIndex].characters[2].name)")
+        
+        if let choiceCharacterTeam = readLine() {
+            
+            var character: Character!
+            switch choiceCharacterTeam {
             case "1":
-                characterTeam2 = teams[1].characters[0]
+                character = teams[teamIndex].characters[0]
             case "2":
-                characterTeam2 = teams[1].characters[1]
+                character = teams[teamIndex].characters[1]
             case "3":
-                characterTeam2 = teams[1].characters[2]
+                character = teams[teamIndex].characters[2]
             default:
                 print("Personnage non valide !")
             }
-            
-            for status in teams[0].characters {
-                print("Statut de l'adversaire \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
-                
-            }
-            
-            print("Sélectionne le personnage que tu veux attaquer :"
-                + "\n1. \(teams[0].characters[0].name)"
-                + "\n2. \(teams[0].characters[1].name)"
-                + "\n3. \(teams[0].characters[2].name)")
-            
-            if let choiceCharacterTeam1 = readLine() {
-                var characterTeam1: Character!
-                switch choiceCharacterTeam1 {
-                case "1":
-                    characterTeam1 = teams[0].characters[0]
-                case "2":
-                    characterTeam1 = teams[0].characters[1]
-                case "3":
-                    characterTeam1 = teams[0].characters[2]
-                default:
-                    print("Personnage non valide")
-                }
-                myCharacter(character: characterTeam2, actOn: characterTeam1)
-                
-            } else if characterTeam2.description == "Mage" {
-                myCharacter(character: characterTeam2, actOn: characterTeam2)
-            }
-        }
-        
-        for status in teams[1].characters {
-            while status.isLife {
-                startRound()
-            }
+            return character
+        } else {
+            return nil
         }
     }
     
@@ -434,7 +360,6 @@ class Round {
 //========================
 //MARK: - Conversation
 //========================
-
 
 
 
