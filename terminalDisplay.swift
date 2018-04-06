@@ -1,6 +1,5 @@
 
 
-
 import Foundation
 
 
@@ -253,15 +252,27 @@ class Game {
         let round = rounds[0]
         rounds.append(round)
         round.teams = teams
+        round.startRound()
         
-        while true {
-            round.startRound()
+        for characters in teams[0].characters {
+            
+            while characters.isLife {
+                round.startRound()
+            }
+            if characters.isDead {
+                print("L'équipe \(teams[1].name) a gagné !")
+            }
         }
         
-        
-        
-        
-        
+        for characters in teams[1].characters {
+            
+            while characters.isLife {
+                round.startRound()
+            }
+            if characters.isDead {
+                print("L'équipe \(teams[0].name) a gagné !")
+            }
+        }
     }
 }
 
@@ -281,27 +292,34 @@ class Round {
             
         }
         
-        let character1 = selectCharacter(teamIndex: index, isAttacking: false)
+        let character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
         
         for status in teams[opposingIndex].characters {
             print("Statut de l'équipe \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
             
         }
         
-        let character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true)
+        var character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
         
-        myCharacter(character: character1!, actOn: character2!)
+        if character1?.description == "Mage" {
+            character2 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
+        }
+        
+        selectTarget(with: character1!, target: character2!)
         
     }
     
-    func selectCharacter(teamIndex: Int, isAttacking: Bool) -> Character? {
+    func selectCharacter(teamIndex: Int, isAttacking: Bool, isTreated: Bool) -> Character? {
         var message = ""
         
         if isAttacking {
             message = "Sélectionne le personnage que tu veux attaquer :"
             
+        } else if isTreated {
+            message = "Sélectionne le personnage que tu veux soigner :"
+            
         } else {
-            message = "Sélectionne ton personnage :"
+            message = "Sélectionne ton personnage"
         }
         
         print(message
@@ -328,7 +346,7 @@ class Round {
         }
     }
     
-    func myCharacter(character: Character, actOn opposingCharacter: Character) {
+    func selectTarget(with character: Character, target opposingCharacter: Character) {
         opposingCharacter.lifePoints += character.weapon.points
         
         // Random weapon
@@ -360,6 +378,7 @@ class Round {
 //========================
 //MARK: - Conversation
 //========================
+
 
 
 
