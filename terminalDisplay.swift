@@ -143,7 +143,7 @@ class Team {
     var name: String
     var characters = [Character]()
     
-    private init(name: String) {
+    init(name: String) {
         self.name = name
     }
     
@@ -244,7 +244,9 @@ class Game {
         print("Bienvenue au tournoi des guerriers de Namek !")
         let team1 = Team.addTeam()!
         let team2 = Team.addTeam()!
-        self.teams = [team1, team2]
+        let teamBoss = Team(name: "Boss")
+        teamBoss.characters.append(Boss())
+        self.teams = [team1, team2, teamBoss]
         
     }
     
@@ -254,6 +256,10 @@ class Game {
         round.teams = teams
         round.startRound()
         
+        let roundBoss = rounds[1]
+        rounds.append(roundBoss)
+        roundBoss.teams = teams
+        
         for characters in teams[0].characters {
             
             while characters.isLife {
@@ -261,6 +267,7 @@ class Game {
             }
             if characters.isDead {
                 print("L'équipe \(teams[1].name) a gagné !")
+                roundBoss.startRoundBossForTeam2()
             }
         }
         
@@ -271,6 +278,8 @@ class Game {
             }
             if characters.isDead {
                 print("L'équipe \(teams[0].name) a gagné !")
+                roundBoss.startRoundBossForTeam1()
+                
             }
         }
     }
@@ -292,7 +301,22 @@ class Round {
             
         }
         
-        let character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
+        var character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
+        
+        // If for the fight against the Boss who target a random character
+        
+        if index == 2 { // Index of Boss
+            character1 = teams[2].characters[0]
+            
+            let charactersArray = [teams[opposingIndex].characters[0], teams[opposingIndex].characters[1], teams[opposingIndex].characters[2]]
+            
+            let randomCharacterIndex = Int(arc4random_uniform(UInt32(charactersArray.count)))
+            print(charactersArray[randomCharacterIndex])
+            
+            let characterRandom = charactersArray[randomCharacterIndex]
+            
+            selectTarget(with: character1!, target: characterRandom)
+        }
         
         for status in teams[opposingIndex].characters {
             print("Statut de l'équipe \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
@@ -305,8 +329,23 @@ class Round {
             character2 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
         }
         
+        if opposingIndex == 2 { // Index of Boss
+            character2 = teams[2].characters[0]
+        }
+        
         selectTarget(with: character1!, target: character2!)
         
+    }
+    
+    func startRoundBossForTeam1() {
+        fight(betweenTeam: 0, andTeam: 2)
+        fight(betweenTeam: 2, andTeam: 0)
+        
+    }
+    
+    func startRoundBossForTeam2() {
+        fight(betweenTeam: 1, andTeam: 2)
+        fight(betweenTeam: 2, andTeam: 1)
     }
     
     func selectCharacter(teamIndex: Int, isAttacking: Bool, isTreated: Bool) -> Character? {
@@ -341,6 +380,7 @@ class Round {
                 print("Personnage non valide !")
             }
             return character
+            
         } else {
             return nil
         }
