@@ -76,7 +76,7 @@ class Boss: Character {
     
     init() {
         let lucille = Lucille()
-        super.init(name: "Negan", description: "Boss", lifePoints: 120, weapon: lucille)
+        super.init(name: "Negan", description: "Boss", lifePoints: 200, weapon: lucille)
     }
 }
 
@@ -229,7 +229,6 @@ class Team {
     }
 }
 
-
 //======================
 //MARK: - Activities
 //======================
@@ -255,31 +254,56 @@ class Game {
         rounds.append(round)
         round.teams = teams
         round.startRound()
-        
-        let roundBoss = rounds[1]
-        rounds.append(roundBoss)
-        roundBoss.teams = teams
-        
+        gameRound()
+    }
+    
+    func gameRound() {
+          
         for characters in teams[0].characters {
             
             while characters.isLife {
-                round.startRound()
+                startGame()
             }
             if characters.isDead {
                 print("L'équipe \(teams[1].name) a gagné !")
-                roundBoss.startRoundBossForTeam2()
+                print("Affrontez le Boss !")
+                teamThatWillFightTheBoss(teamWinner: 1)
             }
         }
         
         for characters in teams[1].characters {
             
             while characters.isLife {
-                round.startRound()
+                startGame()
             }
             if characters.isDead {
                 print("L'équipe \(teams[0].name) a gagné !")
-                roundBoss.startRoundBossForTeam1()
+                print("Affrontez le Boss !")
+                teamThatWillFightTheBoss(teamWinner: 0)
                 
+            }
+        }
+    }
+    
+    func teamThatWillFightTheBoss(teamWinner: Int) {
+        let roundBoss = rounds[1]
+        rounds.append(roundBoss)
+        roundBoss.teams = teams
+        
+        roundBoss.startRoundBoss(for: teamWinner)
+        
+        for characters in teams[teamWinner].characters {
+            while characters.isLife {
+                roundBoss.startRoundBoss(for: teamWinner)
+                
+            }
+            
+            if characters.isDead {
+                print("Le boss t'a vaincu !")
+                print("Tu t'es bien battu !")
+                
+            } else if teams[2].characters[0].isDead {
+                print("Félicitations tu as remporté la coupe des champions !!")
             }
         }
     }
@@ -337,15 +361,10 @@ class Round {
         
     }
     
-    func startRoundBossForTeam1() {
-        fight(betweenTeam: 0, andTeam: 2)
-        fight(betweenTeam: 2, andTeam: 0)
+    func startRoundBoss(for teamWinner: Int) {
+        fight(betweenTeam: teamWinner, andTeam: 2)
+        fight(betweenTeam: 2, andTeam: teamWinner)
         
-    }
-    
-    func startRoundBossForTeam2() {
-        fight(betweenTeam: 1, andTeam: 2)
-        fight(betweenTeam: 2, andTeam: 1)
     }
     
     func selectCharacter(teamIndex: Int, isAttacking: Bool, isTreated: Bool) -> Character? {
@@ -418,7 +437,6 @@ class Round {
 //========================
 //MARK: - Conversation
 //========================
-
 
 
 
