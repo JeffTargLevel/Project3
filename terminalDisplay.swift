@@ -243,9 +243,9 @@ class Game {
         print("Bienvenue au tournoi des guerriers de Namek !")
         let team1 = Team.addTeam()!
         let team2 = Team.addTeam()!
-        let teamBoss = Team(name: "Boss")
-        teamBoss.characters.append(Boss())
-        self.teams = [team1, team2, teamBoss]
+        //let teamBoss = Team(name: "Boss")
+        //teamBoss.characters.append(Boss())
+        self.teams = [team1, team2]
         
     }
     
@@ -285,7 +285,7 @@ class Game {
         }
     }
     
-    func teamThatWillFightTheBoss(teamWinner: Int) {
+    /*func teamThatWillFightTheBoss(teamWinner: Int) {
         let roundBoss = rounds[1]
         rounds.append(roundBoss)
         roundBoss.teams = teams
@@ -306,7 +306,7 @@ class Game {
                 print("Félicitations tu as remporté la coupe des champions !!")
             }
         }
-    }
+    }*/
 }
 
 // Create Round class
@@ -439,7 +439,8 @@ class Round {
 //========================
 
 
-
+let play = Game()
+play.startGame()
 
 
 
