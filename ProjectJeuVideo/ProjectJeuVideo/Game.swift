@@ -10,8 +10,8 @@ import Foundation
 //Create class Game
 
 class Game {
-    var teams = [Team]()
-    var rounds = [Round]()
+    private var teams = [Team]()
+    private var rounds = [Round]()
     
     init() {
         print("Bienvenue au tournoi des guerriers de Namek !")
@@ -31,7 +31,7 @@ class Game {
         gameRound()
     }
     
-    func gameRound() {
+    private func gameRound() {
         
         for numberOfCharacters in 0..<teams[0].characters.count {
             
@@ -59,7 +59,7 @@ class Game {
         }
     }
     
-    func teamThatWillFightTheBoss(teamWinner: Int) {
+    private func teamThatWillFightTheBoss(teamWinner: Int) {
         let roundBoss = Round()
         rounds.append(roundBoss)
         roundBoss.teams = teams
@@ -84,12 +84,13 @@ class Game {
         }
     }
     
-    func gameLose() {
+    private func gameLose() {
         print("👎👎👎👎👎")
     }
     
-    func gameWin() {
+    private func gameWin() {
         print("👍👍👍👍👍")
     }
     
 }
+

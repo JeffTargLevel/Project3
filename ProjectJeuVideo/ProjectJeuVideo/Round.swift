@@ -17,7 +17,7 @@ class Round {
         fight(betweenTeam: 1, andTeam: 0)
     }
     
-    func fight(betweenTeam index: Int, andTeam opposingIndex: Int) {
+    private func fight(betweenTeam index: Int, andTeam opposingIndex: Int) {
         for status in teams[index].characters {
             print("Statut du personnage \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
         }
@@ -66,7 +66,7 @@ class Round {
         
     }
     
-    func selectCharacter(teamIndex: Int, isAttacking: Bool, isTreated: Bool) -> Character? {
+    private func selectCharacter(teamIndex: Int, isAttacking: Bool, isTreated: Bool) -> Character? {
         var message = ""
         
         if isAttacking {
@@ -103,7 +103,7 @@ class Round {
         }
     }
     
-    func selectTarget(with character: Character, target opposingCharacter: Character) {
+    private func selectTarget(with character: Character, target opposingCharacter: Character) {
         opposingCharacter.lifePoints += character.weapon.points
         
         // Random weapon
