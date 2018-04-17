@@ -24,37 +24,25 @@ class Game {
     }
     
     func startGame() {
+        gameRound(betweenTeam: 0, andTeam: 1)
+        gameRound(betweenTeam: 1, andTeam: 0)
+    }
+    
+    private func gameRound(betweenTeam index: Int, andTeam opposingIndex: Int) {
         let round = Round()
         rounds.append(round)
         round.teams = teams
-        round.startRound()
-        gameRound()
-    }
-    
-    private func gameRound() {
         
-        for numberOfCharacters in 0..<teams[0].characters.count {
+        for numberOfCharacters in 0..<teams[index].characters.count {
             
-            while teams[0].characters[numberOfCharacters].isLife {
-                startGame()
+            while teams[index].characters[0 + numberOfCharacters].isLife {
+                round.startRound()
             }
-            if teams[0].characters[numberOfCharacters].isDead {
-                print("L'équipe \(teams[1].name) a gagné !")
-                print("Affrontez le Boss !")
-                teamThatWillFightTheBoss(teamWinner: 1)
-            }
-        }
-        
-        for numberOfCharacters in 0..<teams[1].characters.count {
             
-            while teams[1].characters[numberOfCharacters].isLife {
-                startGame()
-            }
-            if teams[1].characters[numberOfCharacters].isDead {
-                print("L'équipe \(teams[0].name) a gagné !")
+        if teams[index].characters[0 + numberOfCharacters].isDead {
+                print("L'équipe \(teams[opposingIndex].name) a gagné !")
                 print("Affrontez le Boss !")
-                teamThatWillFightTheBoss(teamWinner: 0)
-                
+                teamThatWillFightTheBoss(teamWinner: opposingIndex)
             }
         }
     }
@@ -68,11 +56,10 @@ class Game {
         
         for numberOfCharacters in 0..<teams[teamWinner].characters.count {
             while teams[teamWinner].characters[0 + numberOfCharacters].isLife {
-                roundBoss.startRoundBoss(for: teamWinner)
-                
+                teamThatWillFightTheBoss(teamWinner: teamWinner)
             }
             
-            if teams[teamWinner].characters[0 + numberOfCharacters].isDead {
+        if teams[teamWinner].characters[0 + numberOfCharacters].isDead {
                 print("Le boss t'a vaincu !")
                 print("Tu t'es bien battu !")
                 gameLose()
@@ -86,10 +73,14 @@ class Game {
     
     private func gameLose() {
         print("👎👎👎👎👎")
+        print("Rejouer ?")
+        Game().startGame()
     }
     
     private func gameWin() {
         print("👍👍👍👍👍")
+        print("Rejouer ?")
+        Game().startGame()
     }
     
 }

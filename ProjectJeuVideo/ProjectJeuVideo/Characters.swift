@@ -16,7 +16,7 @@ class Character {
     var lifePoints: Int
     var weapon: Weapon
     var isLife: Bool {
-        return lifePoints >= 0
+        return lifePoints > 0
     }
     var isDead: Bool {
         return lifePoints <= 0
