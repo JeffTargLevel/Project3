@@ -33,16 +33,16 @@ class Game {
         rounds.append(round)
         round.teams = teams
         
-        for numberOfCharacters in 0..<teams[index].characters.count {
+        for numberOfCharacters in 0..<teams[opposingIndex].characters.count {
             
-            while teams[index].characters[0 + numberOfCharacters].isLife {
+            while teams[opposingIndex].characters[0 + numberOfCharacters].isLife {
                 round.startRound()
             }
             
-        if teams[index].characters[0 + numberOfCharacters].isDead {
-                print("L'équipe \(teams[opposingIndex].name) a gagné !")
+            if teams[opposingIndex].characters[0 + numberOfCharacters].isDead {
+                print("L'équipe \(teams[index].name) a gagné !")
                 print("Affrontez le Boss !")
-                teamThatWillFightTheBoss(teamWinner: opposingIndex)
+                teamThatWillFightTheBoss(teamWinner: index)
             }
         }
     }

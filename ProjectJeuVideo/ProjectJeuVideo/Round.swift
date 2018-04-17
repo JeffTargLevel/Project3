@@ -18,19 +18,12 @@ class Round {
     }
     
     private func fight(betweenTeam index: Int, andTeam opposingIndex: Int) {
-        for status in teams[index].characters {
-            print("Statut du personnage \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
-        }
         
         let character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
         
-        for status in teams[opposingIndex].characters {
-            print("Statut du personnage \(status.name) qui est un \(status.description) avec \(status.lifePoints) points de vie. Son action génére \(status.weapon.points) points de vie.")
-        }
-        
         if character1?.description == "Mage" {
-            let characterMagus = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
-            selectTarget(with: character1!, target: characterMagus!)
+            let characterToTreat = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
+            selectTarget(with: character1!, target: characterToTreat!)
             
         } else {
             let character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
@@ -77,7 +70,7 @@ class Round {
         for numberOfCharacters in 0..<teams[teamIndex].characters.count {
             
             print(message
-                + "\n \(numberOfCharacters + 1). \(teams[teamIndex].characters[0 + numberOfCharacters].name)")
+                + "\n \(numberOfCharacters + 1). \(teams[teamIndex].characters[0 + numberOfCharacters].name) : \(teams[teamIndex].characters[0 + numberOfCharacters].description) qui a \(teams[teamIndex].characters[0 + numberOfCharacters].lifePoints) points de vie.")
         }
         if let choiceCharacterTeam = readLine() {
             
@@ -104,7 +97,7 @@ class Round {
         
         // Random weapon
         
-        if character.description != "Mage" || character.description != "Boss" {
+        if character.description != "Mage" && character.description != "Boss" {
             let weapon = [Sword(), Fists(), Axe()]
             let randomIndexWeapon = Int(arc4random_uniform(UInt32(weapon.count)))
             print(weapon[randomIndexWeapon])
