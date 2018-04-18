@@ -37,23 +37,19 @@ class Team {
         
         if let choiceCharacter = readLine() {
             
-            var character: Character!
-            
             switch choiceCharacter {
             case "1":
-                character = addFighter()
+                characters.append(addFighter()!)
             case "2":
-                character = addMagus()
+                characters.append(addMagus()!)
             case "3":
-                character = addColossus()
+                characters.append(addColossus()!)
             case "4":
-                character = addDwarf()
+                characters.append(addDwarf()!)
             default:
                 print("Personnage non valide")
-                
+                createCharacters()
             }
-            characters.append(character)
-            
         }
     }
     

@@ -88,6 +88,7 @@ class Round {
             return character
             
         } else {
+            
             return nil
         }
     }
