@@ -33,44 +33,42 @@ class Game {
         rounds.append(round)
         round.teams = teams
         
-        for numberOfCharacters in 0..<teams[opposingIndex].characters.count {
+        for character in 0..<teams[index].characters.count {
             
-            while teams[opposingIndex].characters[0 + numberOfCharacters].isLife {
-                round.startRound()
-            }
-            
-            if teams[opposingIndex].characters[0 + numberOfCharacters].isDead {
+            while teams[index].characters[character].isLife && teams[opposingIndex].characters[character].isLife {
+                    round.startRound()
+                
+            if teams[opposingIndex].characters[character].isDead && teams[index].characters[character].isLife {
                 print("L'équipe \(teams[index].name) a gagné !")
                 print("Affrontez le Boss !")
                 teamThatWillFightTheBoss(teamWinner: index)
             }
         }
     }
+}
     
     private func teamThatWillFightTheBoss(teamWinner: Int) {
         let roundBoss = Round()
         rounds.append(roundBoss)
         roundBoss.teams = teams
         
-        roundBoss.startRoundBoss(for: teamWinner)
-        
-        for numberOfCharacters in 0..<teams[teamWinner].characters.count {
-            while teams[teamWinner].characters[0 + numberOfCharacters].isLife {
-                teamThatWillFightTheBoss(teamWinner: teamWinner)
-            }
+        for character in 0..<teams[teamWinner].characters.count {
             
-        if teams[teamWinner].characters[0 + numberOfCharacters].isDead {
+            while teams[teamWinner].characters[character].isLife && teams[2].characters[0].isLife {
+                roundBoss.startRoundBoss(for: teamWinner)
+                
+        if teams[teamWinner].characters[character].isDead && teams[2].characters[0].isLife {
                 print("Le boss t'a vaincu !")
                 print("Tu t'es bien battu !")
                 gameLose()
                 
-            } else if teams[2].characters[0].isDead {
+            } else {
                 print("Félicitations tu as remporté la coupe des champions !!")
                 gameWin()
             }
         }
     }
-    
+}
     private func gameLose() {
         print("👎👎👎👎👎")
         print("Rejouer ?")

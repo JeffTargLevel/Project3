@@ -40,7 +40,7 @@ class Round {
     
     func fightTheBoss(betweenTeamBoss index: Int, andTeam opposingIndex: Int) {
         
-        // If for the fight against the Boss who target a random character
+        // For the fight against the Boss who target a random character
         
             let boss = teams[index].characters[0]
             
@@ -50,6 +50,10 @@ class Round {
             print(charactersArray[randomCharacterIndex])
             
             let characterRandom = charactersArray[randomCharacterIndex]
+        
+        if characterRandom.isDead {
+            print("Le Boss a raté sa cible !")
+        }
         
             selectTarget(with: boss, target: characterRandom)
     }
@@ -67,11 +71,13 @@ class Round {
             message = "Sélectionne ton personnage"
         }
         
-        for numberOfCharacters in 0..<teams[teamIndex].characters.count {
+        for character in 0..<teams[teamIndex].characters.count {
             
+            if teams[teamIndex].characters[character].isLife {
             print(message
-                + "\n \(numberOfCharacters + 1). \(teams[teamIndex].characters[0 + numberOfCharacters].name) : \(teams[teamIndex].characters[0 + numberOfCharacters].description) qui a \(teams[teamIndex].characters[0 + numberOfCharacters].lifePoints) points de vie.")
+                + "\n \(character + 1). \(teams[teamIndex].characters[character].name) : \(teams[teamIndex].characters[character].description) qui a \(teams[teamIndex].characters[character].lifePoints) points de vie.")
         }
+    }
         if let choiceCharacterTeam = readLine() {
             
             var character: Character!
