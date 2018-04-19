@@ -32,16 +32,17 @@ class Game {
         let round = Round()
         rounds.append(round)
         round.teams = teams
+        round.startRound()
         
         for character in 0..<teams[index].characters.count {
-            
-            while teams[index].characters[character].isLife && teams[opposingIndex].characters[character].isLife {
-                    round.startRound()
+        
+            while teams[opposingIndex].characters[character].isLife {
+                    startGame()
                 
-            if teams[opposingIndex].characters[character].isDead && teams[index].characters[character].isLife {
-                print("L'équipe \(teams[index].name) a gagné !")
-                print("Affrontez le Boss !")
-                teamThatWillFightTheBoss(teamWinner: index)
+                if teams[opposingIndex].characters[character].isDead {
+                    print("L'équipe \(teams[index].name) a gagné !")
+                    print("Affrontez le Boss !")
+                    teamThatWillFightTheBoss(teamWinner: index)
             }
         }
     }
@@ -54,10 +55,10 @@ class Game {
         
         for character in 0..<teams[teamWinner].characters.count {
             
-            while teams[teamWinner].characters[character].isLife && teams[2].characters[0].isLife {
+            while teams[teamWinner].characters[character].isLife {
                 roundBoss.startRoundBoss(for: teamWinner)
                 
-        if teams[teamWinner].characters[character].isDead && teams[2].characters[0].isLife {
+        if teams[teamWinner].characters[character].isDead {
                 print("Le boss t'a vaincu !")
                 print("Tu t'es bien battu !")
                 gameLose()
