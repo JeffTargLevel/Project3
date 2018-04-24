@@ -39,11 +39,9 @@ class Game {
             var characterTeam2: Character!
             
             for characterOfTeam1 in teams[index].characters {
-                print("\(characterOfTeam1.name)")
                 characterTeam1 = characterOfTeam1
             }
             for characterOfTeam2 in teams[opposingIndex].characters {
-                print("\(characterOfTeam2.name)")
                 characterTeam2 = characterOfTeam2
             }
             
