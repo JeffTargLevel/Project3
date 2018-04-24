@@ -25,7 +25,6 @@ class Game {
     
     func startGame() {
         playRound(betweenTeam: 0, andTeam: 1)
-        playRound(betweenTeam: 1, andTeam: 0)
         
     }
     
@@ -36,28 +35,38 @@ class Game {
         round.startRound()
         
         while true {
-            var characterLife: Character!
+            var characterTeam1: Character!
+            var characterTeam2: Character!
             
-            for character in teams[index].characters {
-                characterLife = character
-                
+            for characterOfTeam1 in teams[index].characters {
+                print("\(characterOfTeam1.name)")
+                characterTeam1 = characterOfTeam1
+            }
+            for characterOfTeam2 in teams[opposingIndex].characters {
+                print("\(characterOfTeam2.name)")
+                characterTeam2 = characterOfTeam2
             }
             
-            if characterLife.isLife {
+            if characterTeam1.isLife && characterTeam2.isLife {
                 startGame()
                 
             }
-            
-            if characterLife.isDead {
-                print("L'équipe \(teams[opposingIndex].name) a gagné !")
-                print("Affrontez le Boss !")
+                
+            else if characterTeam1.isDead {
                 fightTheFinalBoss(with: opposingIndex)
                 
+            }
+                
+            else if characterTeam2.isDead {
+                fightTheFinalBoss(with: index)
             }
         }
     }
     
     private func fightTheFinalBoss(with teamWinner: Int) {
+        print("L'équipe \(teams[teamWinner].name) a gagné !")
+        print("Affrontez le Boss !")
+        
         let roundBoss = Round()
         rounds.append(roundBoss)
         roundBoss.teams = teams
@@ -94,6 +103,7 @@ class Game {
         Game().startGame()
     }
 }
+
 
 
 
