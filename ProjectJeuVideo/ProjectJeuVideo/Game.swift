@@ -24,63 +24,82 @@ class Game {
     }
     
     func startGame() {
-        gameRound(betweenTeam: 0, andTeam: 1)
-        gameRound(betweenTeam: 1, andTeam: 0)
+        playRound(betweenTeam: 0, andTeam: 1)
+        playRound(betweenTeam: 1, andTeam: 0)
+        
     }
     
-    private func gameRound(betweenTeam index: Int, andTeam opposingIndex: Int) {
+    private func playRound(betweenTeam index: Int, andTeam opposingIndex: Int) {
         let round = Round()
         rounds.append(round)
         round.teams = teams
         round.startRound()
         
-        for character in 0..<teams[index].characters.count {
-        
-            while teams[opposingIndex].characters[character].isLife {
-                    startGame()
+        while true {
+            var characterLife: Character!
+            
+            for character in teams[index].characters {
+                characterLife = character
                 
-                if teams[opposingIndex].characters[character].isDead {
-                    print("L'équipe \(teams[index].name) a gagné !")
-                    print("Affrontez le Boss !")
-                    teamThatWillFightTheBoss(teamWinner: index)
+            }
+            
+            if characterLife.isLife {
+                startGame()
+                
+            }
+            
+            if characterLife.isDead {
+                print("L'équipe \(teams[opposingIndex].name) a gagné !")
+                print("Affrontez le Boss !")
+                fightTheFinalBoss(with: opposingIndex)
+                
             }
         }
     }
-}
     
-    private func teamThatWillFightTheBoss(teamWinner: Int) {
+    private func fightTheFinalBoss(with teamWinner: Int) {
         let roundBoss = Round()
         rounds.append(roundBoss)
         roundBoss.teams = teams
+        roundBoss.startRoundBoss(for: teamWinner)
         
-        for character in 0..<teams[teamWinner].characters.count {
+        
+        while true {
+            var characterTeamWinner: Character!
             
-            while teams[teamWinner].characters[character].isLife {
-                roundBoss.startRoundBoss(for: teamWinner)
+            for character in teams[teamWinner].characters {
+                characterTeamWinner = character
                 
-        if teams[teamWinner].characters[character].isDead {
+            }
+            
+            if characterTeamWinner.isLife {
+                fightTheFinalBoss(with: teamWinner)
+            }
+                
+            else if characterTeamWinner.isDead {
                 print("Le boss t'a vaincu !")
                 print("Tu t'es bien battu !")
-                gameLose()
+                replay()
                 
             } else {
                 print("Félicitations tu as remporté la coupe des champions !!")
-                gameWin()
+                replay()
+                
             }
         }
     }
-}
-    private func gameLose() {
-        print("👎👎👎👎👎")
+    
+    private func replay() {
         print("Rejouer ?")
         Game().startGame()
     }
-    
-    private func gameWin() {
-        print("👍👍👍👍👍")
-        print("Rejouer ?")
-        Game().startGame()
-    }
-    
 }
+
+
+
+
+
+
+
+
 

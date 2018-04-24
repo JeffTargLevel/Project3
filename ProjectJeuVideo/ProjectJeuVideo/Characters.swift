@@ -79,3 +79,4 @@ class Boss: Character {
         super.init(name: "Negan", description: "Boss", lifePoints: 200, weapon: lucille)
     }
 }
+

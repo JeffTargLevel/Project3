@@ -42,20 +42,20 @@ class Round {
         
         // For the fight against the Boss who target a random character
         
-            let boss = teams[index].characters[0]
-            
-            let charactersArray = [teams[opposingIndex].characters[0], teams[opposingIndex].characters[1], teams[opposingIndex].characters[2]]
-            
-            let randomCharacterIndex = Int(arc4random_uniform(UInt32(charactersArray.count)))
-            print(charactersArray[randomCharacterIndex])
-            
-            let characterRandom = charactersArray[randomCharacterIndex]
+        let boss = teams[index].characters[0]
+        
+        let charactersArray = [teams[opposingIndex].characters[0], teams[opposingIndex].characters[1], teams[opposingIndex].characters[2]]
+        
+        let randomCharacterIndex = Int(arc4random_uniform(UInt32(charactersArray.count)))
+        print(charactersArray[randomCharacterIndex])
+        
+        let characterRandom = charactersArray[randomCharacterIndex]
         
         if characterRandom.isDead {
             print("Le Boss a raté sa cible !")
         }
         
-            selectTarget(with: boss, target: characterRandom)
+        selectTarget(with: boss, target: characterRandom)
     }
     
     private func selectCharacter(teamIndex: Int, isAttacking: Bool, isTreated: Bool) -> Character? {
@@ -70,14 +70,14 @@ class Round {
         } else {
             message = "Sélectionne ton personnage"
         }
-        
+        print(message)
         for character in 0..<teams[teamIndex].characters.count {
             
             if teams[teamIndex].characters[character].isLife {
-            print(message
-                + "\n \(character + 1). \(teams[teamIndex].characters[character].name) : \(teams[teamIndex].characters[character].description) qui a \(teams[teamIndex].characters[character].lifePoints) points de vie.")
+                
+                print("\n \(character + 1). \(teams[teamIndex].characters[character].name) : \(teams[teamIndex].characters[character].description) qui a \(teams[teamIndex].characters[character].lifePoints) points de vie.")
+            }
         }
-    }
         if let choiceCharacterTeam = readLine() {
             
             var character: Character!
@@ -123,8 +123,9 @@ class Round {
         
         if opposingCharacter.isDead {
             print("\(opposingCharacter.name) est mort !")
-        
+            
         }
     }
-    
 }
+
+

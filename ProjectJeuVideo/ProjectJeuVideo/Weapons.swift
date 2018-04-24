@@ -63,3 +63,4 @@ class Lucille: Weapon {
         super.init(points: -30)
     }
 }
+
