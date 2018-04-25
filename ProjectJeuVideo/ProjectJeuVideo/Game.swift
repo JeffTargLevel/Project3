@@ -20,43 +20,22 @@ class Game {
         let teamBoss = Team(name: "Boss") // Bonus of game
         teamBoss.characters.append(Boss())
         self.teams = [team1, team2, teamBoss]
-        
     }
     
     func startGame() {
-        playRound(betweenTeam: 0, andTeam: 1)
-        
-    }
-    
-    private func playRound(betweenTeam index: Int, andTeam opposingIndex: Int) {
         let round = Round()
         rounds.append(round)
         round.teams = teams
         round.startRound()
         
         while true {
-            var characterTeam1: Character!
-            var characterTeam2: Character!
             
-            for characterOfTeam1 in teams[index].characters {
-                characterTeam1 = characterOfTeam1
-            }
-            for characterOfTeam2 in teams[opposingIndex].characters {
-                characterTeam2 = characterOfTeam2
-            }
-            
-            if characterTeam1.isLife && characterTeam2.isLife {
-                startGame()
-                
-            }
-                
-            else if characterTeam1.isDead {
-                fightTheFinalBoss(with: opposingIndex)
-                
-            }
-                
-            else if characterTeam2.isDead {
-                fightTheFinalBoss(with: index)
+            if teams[0].isLive() && teams[1].isLive() {
+                round.startRound()
+            } else if teams[0].isLive() == false {
+                fightTheFinalBoss(with: 1)
+            } else if teams[1].isLive() == false {
+                fightTheFinalBoss(with: 0)
             }
         }
     }
@@ -70,25 +49,15 @@ class Game {
         roundBoss.teams = teams
         roundBoss.startRoundBoss(for: teamWinner)
         
-        
         while true {
-            var characterTeamWinner: Character!
             
-            for character in teams[teamWinner].characters {
-                characterTeamWinner = character
-                
-            }
-            
-            if characterTeamWinner.isLife {
-                fightTheFinalBoss(with: teamWinner)
-            }
-                
-            else if characterTeamWinner.isDead {
+            if teams[teamWinner].isLive() {
+                roundBoss.startRoundBoss(for: teamWinner)
+            } else if teams[teamWinner].isLive() == false {
                 print("Le boss t'a vaincu !")
                 print("Tu t'es bien battu !")
                 replay()
-                
-            } else {
+            } else if teams[2].isLive() == false {
                 print("Félicitations tu as remporté la coupe des champions !!")
                 replay()
                 

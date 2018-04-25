@@ -17,6 +17,23 @@ class Team {
         self.name = name
     }
     
+    func isLive() -> Bool {
+        var isLive = true
+        var count = 0
+        
+        for character in characters {
+            if character.isLife {
+                count += 1
+            }
+        }
+        
+        if count == 0 {
+            isLive = false
+        }
+        
+        return isLive
+    }
+    
     static func addTeam() -> Team? {
         print("Entre le nom de ton équipe")
         if let name = readLine() {
@@ -95,4 +112,6 @@ class Team {
         }
     }
 }
+
+
 

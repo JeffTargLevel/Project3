@@ -100,7 +100,6 @@ class Round {
     }
     
     private func selectTarget(with character: Character, target opposingCharacter: Character) {
-        opposingCharacter.lifePoints += character.weapon.points
         
         // Random weapon
         
@@ -109,6 +108,8 @@ class Round {
             let randomIndexWeapon = Int(arc4random_uniform(UInt32(weapon.count)))
             print(weapon[randomIndexWeapon])
             character.weapon.points = weapon[randomIndexWeapon].points
+            opposingCharacter.lifePoints += character.weapon.points
+        } else {
             opposingCharacter.lifePoints += character.weapon.points
         }
         
