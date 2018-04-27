@@ -59,7 +59,7 @@ class Team {
         case 4:
             characters.append(addDwarf()!)
         default:
-            print("Personnage non valide !")
+            fatalError()
         }
     }
     

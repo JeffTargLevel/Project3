@@ -86,7 +86,6 @@ class Round {
         case 3:
             return teams[teamIndex].characters[2]
         default:
-            print("Personnage non valide !")
             return nil
         }
     }
