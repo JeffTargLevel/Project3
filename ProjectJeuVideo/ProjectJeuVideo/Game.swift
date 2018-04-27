@@ -60,7 +60,6 @@ class Game {
             } else if teams[2].isLive() == false {
                 print("Félicitations tu as remporté la coupe des champions !!")
                 replay()
-                
             }
         }
     }

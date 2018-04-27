@@ -30,19 +30,15 @@ class Team {
         if count == 0 {
             isLive = false
         }
-        
         return isLive
     }
     
     static func addTeam() -> Team? {
         print("Entre le nom de ton équipe")
-        if let name = readLine() {
-            let teamWithCharacters = Team(name: name)
-            teamWithCharacters.createThreeCharacters()
-            return teamWithCharacters
-        } else {
-            return nil
-        }
+        let name = Display.readText()
+        let teamWithCharacters = Team(name: name)
+        teamWithCharacters.createThreeCharacters()
+        return teamWithCharacters
     }
     
     private func createCharacters() {
@@ -52,21 +48,18 @@ class Team {
             + "\n3. Colosse"
             + "\n4. Nain")
         
-        if let choiceCharacter = readLine() {
-            
-            switch choiceCharacter {
-            case "1":
-                characters.append(addFighter()!)
-            case "2":
-                characters.append(addMagus()!)
-            case "3":
-                characters.append(addColossus()!)
-            case "4":
-                characters.append(addDwarf()!)
-            default:
-                print("Personnage non valide")
-                createCharacters()
-            }
+        let characterToCreate = Display.readNumber(valueMax: 4)
+        switch characterToCreate {
+        case 1:
+            characters.append(addFighter()!)
+        case 2:
+            characters.append(addMagus()!)
+        case 3:
+            characters.append(addColossus()!)
+        case 4:
+            characters.append(addDwarf()!)
+        default:
+            print("Personnage non valide !")
         }
     }
     
@@ -78,40 +71,31 @@ class Team {
     
     private func addFighter() -> Fighter? {
         print("Entre son nom :")
-        if let name = readLine() {
-            return Fighter(name: name)
-        } else {
-            return nil
-        }
+        let name = Display.readText()
+        return Fighter(name: name)
     }
     
     private func addMagus() -> Magus? {
         print("Entre son nom :")
-        if let name = readLine() {
-            return Magus(name: name)
-        } else {
-            return nil
-        }
+        let name = Display.readText()
+        return Magus(name: name)
     }
     
     private func addColossus() -> Colossus? {
         print("Entre son nom :")
-        if let name = readLine() {
-            return Colossus(name: name)
-        } else {
-            return nil
-        }
+        let name = Display.readText()
+        return Colossus(name: name)
     }
     
     private func addDwarf() -> Dwarf? {
         print("Entre son nom :")
-        if let name = readLine() {
-            return Dwarf(name: name)
-        } else {
-            return nil
-        }
+        let name = Display.readText()
+        return Dwarf(name: name)
     }
 }
+
+
+
 
 
 

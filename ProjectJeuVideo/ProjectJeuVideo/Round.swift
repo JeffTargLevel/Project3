@@ -63,38 +63,30 @@ class Round {
         
         if isAttacking {
             message = "Sélectionne le personnage que tu veux attaquer :"
-            
         } else if isTreated {
             message = "Sélectionne le personnage que tu veux soigner :"
-            
         } else {
             message = "Sélectionne ton personnage"
         }
+        
         print(message)
         for character in 0..<teams[teamIndex].characters.count {
             
             if teams[teamIndex].characters[character].isLife {
-                
                 print("\n \(character + 1). \(teams[teamIndex].characters[character].name) : \(teams[teamIndex].characters[character].description) qui a \(teams[teamIndex].characters[character].lifePoints) points de vie.")
             }
         }
-        if let choiceCharacterTeam = readLine() {
-            
-            var character: Character!
-            switch choiceCharacterTeam {
-            case "1":
-                character = teams[teamIndex].characters[0]
-            case "2":
-                character = teams[teamIndex].characters[1]
-            case "3":
-                character = teams[teamIndex].characters[2]
-            default:
-                print("Personnage non valide !")
-            }
-            return character
-            
-        } else {
-            
+        
+        let choiceCharacter = Display.readNumber(valueMax: 3)
+        switch choiceCharacter {
+        case 1:
+            return teams[teamIndex].characters[0]
+        case 2:
+            return teams[teamIndex].characters[1]
+        case 3:
+            return teams[teamIndex].characters[2]
+        default:
+            print("Personnage non valide !")
             return nil
         }
     }
@@ -115,18 +107,16 @@ class Round {
         
         if character.weapon.points < 0 {
             print("\(character.name) combat contre \(opposingCharacter.name) !")
-            
             print("\(opposingCharacter.name) perd \(character.weapon.points) points de vie et il lui en reste \(opposingCharacter.lifePoints) !")
-            
         } else {
             print("\(character.name) soigne \(opposingCharacter.name) et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
         }
         
         if opposingCharacter.isDead {
             print("\(opposingCharacter.name) est mort !")
-            
         }
     }
 }
+
 
 
