@@ -17,7 +17,7 @@ class Team {
         self.name = name
     }
     
-    func isLive() -> Bool {
+    var isAlive: Bool {
         var isLive = true
         var count = 0
         
@@ -59,7 +59,7 @@ class Team {
         case 4:
             characters.append(addDwarf()!)
         default:
-            fatalError()
+            break
         }
     }
     

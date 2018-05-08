@@ -21,16 +21,14 @@ class Display {
     }
     
     static func readNumber(valueMax: Int) -> Int {
-        if let number = Int(readLine()!) {
-            if number <= valueMax && number != 0 {
+        if let line = readLine(), let number = Int(line), number <= valueMax && number <= 0 {
                 return number
             }
-        }
         print("Choix erroné.")
         return readNumber(valueMax: valueMax)
     }
 }
 
 
-
+// Modiifer readNumber
 

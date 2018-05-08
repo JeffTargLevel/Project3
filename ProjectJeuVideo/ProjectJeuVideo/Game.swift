@@ -30,11 +30,11 @@ class Game {
         
         while true {
             
-            if teams[0].isLive() && teams[1].isLive() {
+            if teams[0].isAlive && teams[1].isAlive {
                 round.startRound()
-            } else if teams[0].isLive() == false {
+            } else if teams[0].isAlive == false {
                 fightTheFinalBoss(with: 1)
-            } else if teams[1].isLive() == false {
+            } else if teams[1].isAlive == false {
                 fightTheFinalBoss(with: 0)
             }
         }
@@ -51,13 +51,13 @@ class Game {
         
         while true {
             
-            if teams[teamWinner].isLive() {
+            if teams[teamWinner].isAlive {
                 roundBoss.startRoundBoss(for: teamWinner)
-            } else if teams[teamWinner].isLive() == false {
+            } else if teams[teamWinner].isAlive == false {
                 print("Le boss t'a vaincu !")
                 print("Tu t'es bien battu !")
                 replay()
-            } else if teams[2].isLive() == false {
+            } else if teams[2].isAlive == false {
                 print("Félicitations tu as remporté la coupe des champions !!")
                 replay()
             }

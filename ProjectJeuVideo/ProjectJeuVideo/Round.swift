@@ -21,10 +21,9 @@ class Round {
         
         let character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
         
-        if character1?.description == "Mage" {
+        if !(character1 is Magus) {
             let characterToTreat = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
             selectTarget(with: character1!, target: characterToTreat!)
-            
         } else {
             let character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
             selectTarget(with: character1!, target: character2!)
@@ -94,7 +93,7 @@ class Round {
         
         // Random weapon
         
-        if character.description != "Mage" && character.description != "Boss" {
+        if !(character is Magus) && !(character is Boss) {
             let weapon = [Sword(), Fists(), Axe()]
             let randomIndexWeapon = Int(arc4random_uniform(UInt32(weapon.count)))
             print(weapon[randomIndexWeapon])
