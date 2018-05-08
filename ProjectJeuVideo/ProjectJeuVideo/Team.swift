@@ -34,7 +34,7 @@ class Team {
     }
     
     static func addTeam() -> Team? {
-        print("Entre le nom de ton équipe")
+        print("\nEntre le nom de ton équipe :")
         let name = Display.readText()
         let teamWithCharacters = Team(name: name)
         teamWithCharacters.createThreeCharacters()

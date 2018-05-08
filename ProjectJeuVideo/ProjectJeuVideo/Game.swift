@@ -14,7 +14,10 @@ class Game {
     private var rounds = [Round]()
     
     init() {
-        print("Bienvenue au tournoi des guerriers de Namek !")
+        print("🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡"
+        + "\n🛡 Bienvenue aux guerriers de Namek !🛡"
+        + "\n🛡         ⚔️⚔️⚔️⚔️⚔️⚔️             🛡"
+        + "\n🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡")
         let team1 = Team.addTeam()!
         let team2 = Team.addTeam()!
         let teamBoss = Team(name: "Boss") // Bonus of game
