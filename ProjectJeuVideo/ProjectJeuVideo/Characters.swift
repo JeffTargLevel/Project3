@@ -28,6 +28,10 @@ class Character {
         self.lifePoints = lifePoints
         self.weapon = weapon
     }
+    
+    static func editTheNameOfCharacter() {
+        print("Entre son nom :")
+    }
 }
 
 // Create class Fighter who inherits class Character

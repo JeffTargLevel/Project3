@@ -70,27 +70,23 @@ class Team {
     }
     
     private func addFighter() -> Fighter? {
-        print("Entre son nom :")
-        let name = Display.readText()
-        return Fighter(name: name)
+        Character.editTheNameOfCharacter()
+        return Fighter(name: Display.readText())
     }
     
     private func addMagus() -> Magus? {
-        print("Entre son nom :")
-        let name = Display.readText()
-        return Magus(name: name)
+        Character.editTheNameOfCharacter()
+        return Magus(name: Display.readText())
     }
     
     private func addColossus() -> Colossus? {
-        print("Entre son nom :")
-        let name = Display.readText()
-        return Colossus(name: name)
+        Character.editTheNameOfCharacter()
+        return Colossus(name: Display.readText())
     }
     
     private func addDwarf() -> Dwarf? {
-        print("Entre son nom :")
-        let name = Display.readText()
-        return Dwarf(name: name)
+        Character.editTheNameOfCharacter()
+        return Dwarf(name: Display.readText())
     }
 }
 
