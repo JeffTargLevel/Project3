@@ -11,11 +11,9 @@ import Foundation
 class Display {
     
     static func readText() -> String {
-        if let line = readLine() {
-            if line.count > 0 {
+        if let line = readLine(), line.count > 0 {
                 return line
             }
-        }
         print("Vous n'avez rien écrit.")
         return readText()
     }
@@ -30,5 +28,4 @@ class Display {
 }
 
 
-// Modiifer readNumber
 

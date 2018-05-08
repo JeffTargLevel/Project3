@@ -21,20 +21,26 @@ class Round {
         
         let character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
         
-        if !(character1 is Magus) {
+        if character1 is Magus {
             let characterToTreat = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
-            selectTarget(with: character1!, target: characterToTreat!)
+            attackOrTreat(with: character1!, target: characterToTreat!)
+            while characterToTreat!.isDead {
+                print("Personnage mort ! Choisissez un personnage vivant à soigner !")
+                attackOrTreat(with: character1!, target: characterToTreat!)
+            }
         } else {
             let character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
-            selectTarget(with: character1!, target: character2!)
+            attackOrTreat(with: character1!, target: character2!)
+            while character2!.isDead {
+                print("Personnage mort ! Choissisez un personnage vivant à attaquer !")
+                attackOrTreat(with: character1!, target: character2!)
+            }
         }
-        
     }
     
     func startRoundBoss(for teamWinner: Int) {
         fight(betweenTeam: teamWinner, andTeam: 2)
         fightTheBoss(betweenTeamBoss: 2, andTeam: teamWinner)
-        
     }
     
     func fightTheBoss(betweenTeamBoss index: Int, andTeam opposingIndex: Int) {
@@ -53,8 +59,7 @@ class Round {
         if characterRandom.isDead {
             print("Le Boss a raté sa cible !")
         }
-        
-        selectTarget(with: boss, target: characterRandom)
+        attackOrTreat(with: boss, target: characterRandom)
     }
     
     private func selectCharacter(teamIndex: Int, isAttacking: Bool, isTreated: Bool) -> Character? {
@@ -89,7 +94,7 @@ class Round {
         }
     }
     
-    private func selectTarget(with character: Character, target opposingCharacter: Character) {
+    private func attackOrTreat(with character: Character, target opposingCharacter: Character) {
         
         // Random weapon
         
