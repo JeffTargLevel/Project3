@@ -14,11 +14,13 @@ class Round {
     
     func startRound() {
         fight(betweenTeam: 0, andTeam: 1)
+        
+        if teams[1].isAlive {
         fight(betweenTeam: 1, andTeam: 0)
+        }
     }
     
     private func fight(betweenTeam index: Int, andTeam opposingIndex: Int) {
-        
         var character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
         while character1!.isDead {
             print("\n⚠️ Personnage mort 💀! Choissisez un personnage vivant !")
@@ -32,19 +34,25 @@ class Round {
                 characterToTreat = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
             }
             attackOrTreat(with: character1!, target: characterToTreat!)
-        } else {
+        } else if opposingIndex != 2 {
             var character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
             while character2!.isDead {
                 print("\n⚠️ Personnage mort 💀! Choissisez un personnage vivant à attaquer 💪")
                 character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
             }
             attackOrTreat(with: character1!, target: character2!)
+        } else {
+            let characterBoss = teams[2].characters[0]
+            attackOrTreat(with: character1!, target: characterBoss)
         }
     }
     
     func startRoundBoss(for teamWinner: Int) {
         fight(betweenTeam: teamWinner, andTeam: 2)
+        
+        if teams[2].isAlive {
         fightTheBoss(betweenTeamBoss: 2, andTeam: teamWinner)
+        }
     }
     
     func fightTheBoss(betweenTeamBoss index: Int, andTeam opposingIndex: Int) {
@@ -56,14 +64,14 @@ class Round {
         let charactersArray = [teams[opposingIndex].characters[0], teams[opposingIndex].characters[1], teams[opposingIndex].characters[2]]
         
         let randomCharacterIndex = Int(arc4random_uniform(UInt32(charactersArray.count)))
-        print(charactersArray[randomCharacterIndex])
-        
+       
         let characterRandom = charactersArray[randomCharacterIndex]
         
         if characterRandom.isDead {
             print("\n❌ Le Boss a raté sa cible ❌")
-        }
+        } else {
         attackOrTreat(with: boss, target: characterRandom)
+        }
     }
     
     private func selectCharacter(teamIndex: Int, isAttacking: Bool, isTreated: Bool) -> Character? {
@@ -80,7 +88,7 @@ class Round {
         print(message)
         for character in 0..<teams[teamIndex].characters.count {
             
-            if teams[teamIndex].characters[character].isLife {
+            if teams[teamIndex].characters[character].isAlive {
                 print("\n🚩 \(character + 1). \(teams[teamIndex].characters[character].name) : \(teams[teamIndex].characters[character].description) qui a \(teams[teamIndex].characters[character].lifePoints) points de vie ❤️")
             }
         }
@@ -105,7 +113,7 @@ class Round {
         if !(character is Magus) && !(character is Boss) {
             let weapon = [Sword(), Fists(), Axe()]
             let randomIndexWeapon = Int(arc4random_uniform(UInt32(weapon.count)))
-            print("\n⏏️ Le coffre s'ouvre : \(weapon[randomIndexWeapon].name) pour \(character.name) ‼️")
+            print("\n🎰 Le coffre s'ouvre : \(weapon[randomIndexWeapon].name) pour \(character.name) ‼️")
             character.weapon.points = weapon[randomIndexWeapon].points
             opposingCharacter.lifePoints += character.weapon.points
         } else {

@@ -18,19 +18,19 @@ class Team {
     }
     
     var isAlive: Bool {
-        var isLive = true
+        var living = true
         var count = 0
         
         for character in characters {
-            if character.isLife {
+            if character.isAlive {
                 count += 1
             }
         }
         
         if count == 0 {
-            isLive = false
+            living = false
         }
-        return isLive
+        return living
     }
     
     static func addTeam() -> Team? {
@@ -70,22 +70,22 @@ class Team {
     }
     
     private func addFighter() -> Fighter? {
-        Character.editTheNameOfCharacter()
+        Character.displayMessageEnterHisName()
         return Fighter(name: Display.readText())
     }
     
     private func addMagus() -> Magus? {
-        Character.editTheNameOfCharacter()
+        Character.displayMessageEnterHisName()
         return Magus(name: Display.readText())
     }
     
     private func addColossus() -> Colossus? {
-        Character.editTheNameOfCharacter()
+        Character.displayMessageEnterHisName()
         return Colossus(name: Display.readText())
     }
     
     private func addDwarf() -> Dwarf? {
-        Character.editTheNameOfCharacter()
+        Character.displayMessageEnterHisName()
         return Dwarf(name: Display.readText())
     }
 }

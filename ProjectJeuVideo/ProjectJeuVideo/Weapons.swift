@@ -10,7 +10,7 @@ import Foundation
 // Create class Weapon
 
 class Weapon {
-    var name = ""
+    var name: String
     var points = 0
     
     init(name: String, points: Int) {

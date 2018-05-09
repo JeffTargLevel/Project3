@@ -15,7 +15,7 @@ class Character {
     var description: String
     var lifePoints: Int
     var weapon: Weapon
-    var isLife: Bool {
+    var isAlive: Bool {
         return lifePoints > 0
     }
     var isDead: Bool {
@@ -29,7 +29,7 @@ class Character {
         self.weapon = weapon
     }
     
-    static func editTheNameOfCharacter() {
+    static func displayMessageEnterHisName() {
         print("\n⌨️ Entre son nom  ⌨️")
     }
 }
