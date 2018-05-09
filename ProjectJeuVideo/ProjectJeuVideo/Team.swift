@@ -34,7 +34,7 @@ class Team {
     }
     
     static func addTeam() -> Team? {
-        print("\nEntre le nom de ton équipe :")
+        print("\n👨‍👩‍👧 Entre le nom de ton équipe 👨‍👩‍👧 ")
         let name = Display.readText()
         let teamWithCharacters = Team(name: name)
         teamWithCharacters.createThreeCharacters()
@@ -42,11 +42,11 @@ class Team {
     }
     
     private func createCharacters() {
-        print("Sélectionne ton personnage :"
-            + "\n1. Combattant"
-            + "\n2. Mage"
-            + "\n3. Colosse"
-            + "\n4. Nain")
+        print("\n➡️ Sélectionne ton personnage 😎"
+            + "\n1. 🗡 Combattant 🗡"
+            + "\n2. ☄️ Mage ☄️"
+            + "\n3. 🤛 Colosse 🤜"
+            + "\n4. ⛏ Nain ⛏")
         
         let characterToCreate = Display.readNumber(valueMax: 4)
         switch characterToCreate {

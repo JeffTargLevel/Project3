@@ -19,22 +19,26 @@ class Round {
     
     private func fight(betweenTeam index: Int, andTeam opposingIndex: Int) {
         
-        let character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
+        var character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
+        while character1!.isDead {
+            print("\n⚠️ Personnage mort 💀! Choissisez un personnage vivant !")
+            character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
+        }
         
         if character1 is Magus {
-            let characterToTreat = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
-            attackOrTreat(with: character1!, target: characterToTreat!)
+            var characterToTreat = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
             while characterToTreat!.isDead {
-                print("Personnage mort ! Choisissez un personnage vivant à soigner !")
-                attackOrTreat(with: character1!, target: characterToTreat!)
+                print("\n⚠️ Personnage mort 💀! Choisissez un personnage vivant à soigner 💉")
+                characterToTreat = selectCharacter(teamIndex: index, isAttacking: false, isTreated: true)
             }
+            attackOrTreat(with: character1!, target: characterToTreat!)
         } else {
-            let character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
-            attackOrTreat(with: character1!, target: character2!)
+            var character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
             while character2!.isDead {
-                print("Personnage mort ! Choissisez un personnage vivant à attaquer !")
-                attackOrTreat(with: character1!, target: character2!)
+                print("\n⚠️ Personnage mort 💀! Choissisez un personnage vivant à attaquer 💪")
+                character2 = selectCharacter(teamIndex: opposingIndex, isAttacking: true, isTreated: false)
             }
+            attackOrTreat(with: character1!, target: character2!)
         }
     }
     
@@ -57,7 +61,7 @@ class Round {
         let characterRandom = charactersArray[randomCharacterIndex]
         
         if characterRandom.isDead {
-            print("Le Boss a raté sa cible !")
+            print("\n❌ Le Boss a raté sa cible ❌")
         }
         attackOrTreat(with: boss, target: characterRandom)
     }
@@ -66,18 +70,18 @@ class Round {
         var message = ""
         
         if isAttacking {
-            message = "Sélectionne le personnage que tu veux attaquer :"
+            message = "\n➡️ Sélectionne le personnage que tu veux attaquer ⚔️ "
         } else if isTreated {
-            message = "Sélectionne le personnage que tu veux soigner :"
+            message = "\n➡️ Sélectionne le personnage que tu veux soigner 💉 "
         } else {
-            message = "Sélectionne ton personnage"
+            message = "\n➡️ Sélectionne ton personnage 😎"
         }
         
         print(message)
         for character in 0..<teams[teamIndex].characters.count {
             
             if teams[teamIndex].characters[character].isLife {
-                print("\n \(character + 1). \(teams[teamIndex].characters[character].name) : \(teams[teamIndex].characters[character].description) qui a \(teams[teamIndex].characters[character].lifePoints) points de vie.")
+                print("\n🚩 \(character + 1). \(teams[teamIndex].characters[character].name) : \(teams[teamIndex].characters[character].description) qui a \(teams[teamIndex].characters[character].lifePoints) points de vie ❤️")
             }
         }
         
@@ -101,7 +105,7 @@ class Round {
         if !(character is Magus) && !(character is Boss) {
             let weapon = [Sword(), Fists(), Axe()]
             let randomIndexWeapon = Int(arc4random_uniform(UInt32(weapon.count)))
-            print(weapon[randomIndexWeapon])
+            print("\n⏏️ Le coffre s'ouvre : \(weapon[randomIndexWeapon].name) pour \(character.name) ‼️")
             character.weapon.points = weapon[randomIndexWeapon].points
             opposingCharacter.lifePoints += character.weapon.points
         } else {
@@ -109,17 +113,19 @@ class Round {
         }
         
         if character.weapon.points < 0 {
-            print("\(character.name) combat contre \(opposingCharacter.name) !")
-            print("\(opposingCharacter.name) perd \(character.weapon.points) points de vie et il lui en reste \(opposingCharacter.lifePoints) !")
+            print("\n➡️ \(character.name) combat contre ⚔️ \(opposingCharacter.name) ⚔️ ")
+            print("\n⚠️ \(opposingCharacter.name) perd 💔 \(character.weapon.points) 💔 points de vie et il lui en reste \(opposingCharacter.lifePoints) !")
         } else {
-            print("\(character.name) soigne \(opposingCharacter.name) et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
+            print("\n➡️ \(character.name) soigne 🏥 \(opposingCharacter.name) 🏥 et il remonte à \(opposingCharacter.lifePoints) de points de vie !")
         }
         
         if opposingCharacter.isDead {
-            print("\(opposingCharacter.name) est mort !")
+            print("\n➡️ \(opposingCharacter.name) est mort 💀")
         }
     }
 }
+
+
 
 
 

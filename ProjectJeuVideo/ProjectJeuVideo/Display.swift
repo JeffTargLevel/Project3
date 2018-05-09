@@ -14,7 +14,7 @@ class Display {
         if let line = readLine(), line.count > 0 {
                 return line
             }
-        print("Vous n'avez rien écrit.")
+        print("\n⛔️ Vous n'avez rien écrit ⛔️")
         return readText()
     }
     
@@ -22,7 +22,7 @@ class Display {
         if let line = readLine(), let number = Int(line), number <= valueMax && number > 0 {
                 return number
             }
-        print("Choix erroné.")
+        print("\n⛔️ Choix erroné ⛔️")
         return readNumber(valueMax: valueMax)
     }
 }

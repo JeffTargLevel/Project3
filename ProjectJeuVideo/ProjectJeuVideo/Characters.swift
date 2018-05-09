@@ -30,7 +30,7 @@ class Character {
     }
     
     static func editTheNameOfCharacter() {
-        print("Entre son nom :")
+        print("\n⌨️ Entre son nom  ⌨️")
     }
 }
 
@@ -40,7 +40,7 @@ class Fighter: Character {
     
     init(name: String) {
         let sword = Sword()
-        super.init(name: name, description: "Combattant", lifePoints: 100, weapon: sword)
+        super.init(name: name, description: "🗡 Combattant 🗡", lifePoints: 100, weapon: sword)
     }
 }
 
@@ -50,7 +50,7 @@ class Magus: Character {
     
     init(name: String) {
         let mageBaton = MageBaton()
-        super.init(name: name, description: "Mage", lifePoints: 50, weapon: mageBaton)
+        super.init(name: name, description: "☄️ Mage ☄️", lifePoints: 50, weapon: mageBaton)
     }
 }
 
@@ -60,7 +60,7 @@ class Colossus: Character {
     
     init(name: String) {
         let fists = Fists()
-        super.init(name: name, description: "Colosse", lifePoints: 150, weapon: fists)
+        super.init(name: name, description: "🤛 Colosse 🤜", lifePoints: 150, weapon: fists)
     }
 }
 
@@ -70,7 +70,7 @@ class Dwarf: Character {
     
     init(name: String) {
         let axe = Axe()
-        super.init(name: name, description: "Nain", lifePoints: 70, weapon: axe)
+        super.init(name: name, description: "⛏ Nain ⛏", lifePoints: 70, weapon: axe)
     }
 }
 
@@ -80,7 +80,7 @@ class Boss: Character {
     
     init() {
         let lucille = Lucille()
-        super.init(name: "Negan", description: "Boss", lifePoints: 200, weapon: lucille)
+        super.init(name: " 💥 Negan 💥", description: "🧛🏻‍♂️ Boss 🧛🏻‍♂️", lifePoints: 200, weapon: lucille)
     }
 }
 
