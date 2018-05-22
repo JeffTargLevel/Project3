@@ -13,14 +13,14 @@ class Round {
     var teams = [Team]()
     
     func startRound() {
-        fight(betweenTeam: 0, andTeam: 1)
+        fight(withTeam: 0, againstTeam: 1)
         
         if teams[1].isAlive {
-        fight(betweenTeam: 1, andTeam: 0)
+        fight(withTeam: 1, againstTeam: 0)
         }
     }
     
-    private func fight(betweenTeam index: Int, andTeam opposingIndex: Int) {
+    private func fight(withTeam index: Int, againstTeam opposingIndex: Int) {
         var character1 = selectCharacter(teamIndex: index, isAttacking: false, isTreated: false)
         while character1!.isDead {
             print("\n⚠️ Personnage mort 💀! Choissisez un personnage vivant !")
@@ -48,14 +48,14 @@ class Round {
     }
     
     func startRoundBoss(for teamWinner: Int) {
-        fight(betweenTeam: teamWinner, andTeam: 2)
+        fight(withTeam: teamWinner, againstTeam: 2)
         
         if teams[2].isAlive {
-        fightTheBoss(betweenTeamBoss: 2, andTeam: teamWinner)
+        bossAttack(withTeamBoss: 2, againstTeam: teamWinner)
         }
     }
     
-    func fightTheBoss(betweenTeamBoss index: Int, andTeam opposingIndex: Int) {
+    func bossAttack(withTeamBoss index: Int, againstTeam opposingIndex: Int) {
         
         // For the fight against the Boss who target a random character
         
