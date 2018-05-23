@@ -10,7 +10,7 @@ import Foundation
 // Create class Team
 
 class Team {
-    var name: String
+    let name: String
     var characters = [Character]()
     
     init(name: String) {
@@ -33,7 +33,7 @@ class Team {
         return living
     }
     
-    static func addTeam() -> Team? {
+    static func addTeam() -> Team {
         print("\n👨‍👩‍👧 Entre le nom de ton équipe 👨‍👩‍👧 ")
         let name = Display.readText()
         let teamWithCharacters = Team(name: name)
@@ -51,13 +51,13 @@ class Team {
         let characterToCreate = Display.readNumber(valueMax: 4)
         switch characterToCreate {
         case 1:
-            characters.append(addFighter()!)
+            characters.append(addFighter())
         case 2:
-            characters.append(addMagus()!)
+            characters.append(addMagus())
         case 3:
-            characters.append(addColossus()!)
+            characters.append(addColossus())
         case 4:
-            characters.append(addDwarf()!)
+            characters.append(addDwarf())
         default:
             break
         }
@@ -69,22 +69,22 @@ class Team {
         }
     }
     
-    private func addFighter() -> Fighter? {
+    private func addFighter() -> Fighter {
         Character.displayMessageEnterHisName()
         return Fighter(name: Display.readText())
     }
     
-    private func addMagus() -> Magus? {
+    private func addMagus() -> Magus {
         Character.displayMessageEnterHisName()
         return Magus(name: Display.readText())
     }
     
-    private func addColossus() -> Colossus? {
+    private func addColossus() -> Colossus {
         Character.displayMessageEnterHisName()
         return Colossus(name: Display.readText())
     }
     
-    private func addDwarf() -> Dwarf? {
+    private func addDwarf() -> Dwarf {
         Character.displayMessageEnterHisName()
         return Dwarf(name: Display.readText())
     }

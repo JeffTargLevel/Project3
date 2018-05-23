@@ -18,8 +18,8 @@ class Game {
         + "\n🛡 Bienvenue aux guerriers de Namek !🛡"
         + "\n🛡         ⚔️⚔️⚔️⚔️⚔️⚔️             🛡"
         + "\n🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡🛡")
-        let team1 = Team.addTeam()!
-        let team2 = Team.addTeam()!
+        let team1 = Team.addTeam()
+        let team2 = Team.addTeam()
         let teamBoss = Team(name: "🧛🏻‍♂️ Boss 🧛🏻‍♂️") // Bonus of game
         teamBoss.characters.append(Boss())
         self.teams = [team1, team2, teamBoss]

@@ -10,8 +10,8 @@ import Foundation
 // Create class Weapon
 
 class Weapon {
-    var name: String
-    var points = 0
+    let name: String
+    var points: Int
     
     init(name: String, points: Int) {
         self.name = name
@@ -25,7 +25,7 @@ class Weapon {
 class Sword: Weapon {
     
     init() {
-        super.init(name: "Epée 🗡", points: -10)
+        super.init(name: "Epée 🗡", points: -30)
         
     }
 }
@@ -44,7 +44,7 @@ class MageBaton: Weapon {
 class Fists: Weapon {
     
     init() {
-        super.init(name: "Poings 👊", points: -5)
+        super.init(name: "Poings 👊", points: -15)
     }
 }
 
@@ -53,7 +53,7 @@ class Fists: Weapon {
 class Axe: Weapon {
     
     init() {
-        super.init(name: "Hache ⛏", points: -20)
+        super.init(name: "Hache ⛏", points: -60)
     }
 }
 
@@ -62,7 +62,7 @@ class Axe: Weapon {
 class Lucille: Weapon {
     
     init() {
-        super.init(name: "Lucille 💥", points: -30)
+        super.init(name: "Lucille 💥", points: -60)
     }
 }
 

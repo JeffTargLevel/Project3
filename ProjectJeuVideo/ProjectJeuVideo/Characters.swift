@@ -11,8 +11,8 @@ import Foundation
 
 
 class Character {
-    var name: String
-    var description: String
+    let name: String
+    let description: String
     var lifePoints: Int
     var weapon: Weapon
     var isAlive: Bool {
