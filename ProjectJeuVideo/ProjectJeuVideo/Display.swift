@@ -9,11 +9,12 @@ import Foundation
 
 
 class Display {
-    static var listName = [String]()
+    static var listNames = [String]()
     
     static func readText() -> String {
-        if let line = readLine()?.localizedCapitalized, line.count > 0, listName.contains(line) == false {
-            listName.append(line)
+        
+        if let line = readLine()?.localizedCapitalized, line.count > 0, line != "Negan", line != "Boss", listNames.contains(line) == false {
+            listNames.append(line)
             return line
         }
         print("\n⛔️ Ecrire un nom valide ⛔️")
@@ -28,6 +29,7 @@ class Display {
         return readNumber(valueMax: valueMax)
     }
 }
+
 
 
 
