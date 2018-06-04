@@ -54,7 +54,7 @@ class Game {
         
         while true {
             
-            if teams[teamWinner].isAlive {
+            if teams[teamWinner].isAlive && teams[2].isAlive {
                 roundBoss.startRoundBoss(for: teamWinner)
             } else if teams[teamWinner].isAlive == false {
                 print("\nLe boss t'a vaincu 👎")
